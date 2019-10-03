@@ -3,6 +3,9 @@ package com.twu.biblioteca;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.rmi.CORBA.Util;
+
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -21,6 +24,7 @@ public class OutputTests {
     public void init() {
         System.setOut(new PrintStream(output));
         biblioteca = new BibliotecaApp();
+        biblioteca.main(null);
     }
 
     @After
@@ -30,6 +34,6 @@ public class OutputTests {
 
     @Test
     public void testWelcomeMessage() {
-        assertThat(output.toString(),is("Welcome to "));
+        assertThat(output.toString(),is(Utils.WELCOME_TEXT));
     }
 }
