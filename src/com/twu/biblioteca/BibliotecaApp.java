@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BibliotecaApp {
@@ -13,7 +14,12 @@ public class BibliotecaApp {
     }
 
     private static void loadBooks() {
-
+        _books = new ArrayList<>();
+        _books.add(new Book("Bosch Automotive Handbook"));
+        _books.add(new Book("Clean Code"));
+        _books.add(new Book("Modern Global Seismology"));
+        _books.add(new Book("One Hundred Years of Solitude"));
+        _books.add(new Book("Sled Driver"));
     }
 
     private static void printBookList(List<Book> books) {
@@ -23,6 +29,6 @@ public class BibliotecaApp {
     }
 
     private static void printBook(Book book) {
-        System.out.println(book.title);
+        System.out.println(book.getTitle());
     }
 }
