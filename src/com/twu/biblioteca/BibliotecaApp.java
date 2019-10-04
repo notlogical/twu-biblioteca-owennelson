@@ -10,7 +10,7 @@ public class BibliotecaApp {
 
     public static void main(String[] args) {
         loadBooks();
-        System.out.println(Utils.WELCOME_TEXT);
+        ConsolePrinter.printWelcome();
         printBookList(_books);
     }
 
