@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.StringStartsWith.startsWith;
+import static org.hamcrest.core.StringEndsWith.endsWith;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -32,6 +34,11 @@ public class OutputTests {
 
     @Test
     public void testWelcomeMessage() {
-        assertThat(output.toString(),is(Utils.WELCOME_TEXT + "\n"));
+        assertThat(output.toString(), startsWith(Utils.WELCOME_TEXT + "\n"));
+    }
+
+    @Test
+    public void testBookList() {
+        assertThat(output.toString(), endsWith(Utils.BOOK_LIST));
     }
 }
