@@ -24,6 +24,8 @@ public class BibliotecaApp {
             String input = consoleIn.nextLine();
             if (input.equals("List of books")) {
                 ConsolePrinter.printBookList(_allMedia);
+            } else if(input.equals("List of movies")) {
+                ConsolePrinter.printMovieList(_allMedia);
             } else if (input.equals("Quit")) {
                 running = false;
             } else if (input.startsWith("Checkout")) {

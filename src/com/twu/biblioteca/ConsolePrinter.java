@@ -32,8 +32,8 @@ class ConsolePrinter {
         System.out.println(Utils.FAILED_RETURN_MESSAGE);
     }
 
-    static void printBookList(List<Media> books) {
-        for (Media book : books) {
+    static void printBookList(List<Media> allMedia) {
+        for (Media book : allMedia) {
             if (book.isBook() && book.isAvailable()) {
                 printBook((Book) book);
             }
@@ -43,6 +43,19 @@ class ConsolePrinter {
     private static void printBook(Book book) {
         System.out.println(fitText(book.getTitle()) + "|" + fitText(book
                 .getAuthor()) + "|" + book.getYear());
+    }
+
+    static void printMovieList(List<Media> allMedia) {
+        for (Media movie : allMedia) {
+            if (movie.isMovie() && movie.isAvailable()) {
+                printMovie((Movie) movie);
+            }
+        }
+    }
+
+    static void printMovie(Movie movie) {
+        System.out.println(fitText(movie.getTitle()) + "|" + movie.getYear() +
+        "|" + fitText(movie.getDirector()) + "|" + movie.getRating());
     }
 
     private static String fitText(String text) {

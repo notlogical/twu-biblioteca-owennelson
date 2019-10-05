@@ -17,4 +17,9 @@ public class Movie extends Media{
     String getRating() {
         return _rating;
     }
+
+    @Override
+    boolean isMovie() {
+        return true;
+    }
 }
