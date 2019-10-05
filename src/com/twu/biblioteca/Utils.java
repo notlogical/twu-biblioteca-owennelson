@@ -1,11 +1,11 @@
 package com.twu.biblioteca;
 
-public class Utils {
+class Utils {
 
-    public static final String WELCOME_TEXT = "Welcome to Biblioteca. Your " +
+    static final String WELCOME_TEXT = "Welcome to Biblioteca. Your " +
             "one-stop-shop for great book titles in Bangalore!";
 
-    public static final String BOOK_LIST =
+    static final String BOOK_LIST =
             "Bosch Automotive Handbook     |Robert Bosch GmbH             " +
                     "|1932\n" +
             "Clean Code                    |Robert C. Martin              " +
@@ -17,7 +17,9 @@ public class Utils {
             "Sled Driver                   |Brian Shul                    " +
                     "|1991\n";
 
-    public static final String OPTION_LIST =
+    static final String OPTION_LIST =
             "Options:\n" +
             "-List of books";
+
+    static final String INVALID_OPTION = "Please select a valid option!";
 }

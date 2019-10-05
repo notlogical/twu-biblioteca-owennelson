@@ -53,6 +53,13 @@ public class OutputTests {
         assertThat(output.toString(), endsWith(Utils.BOOK_LIST));
     }
 
+    @Test
+    public void testInvalidOption() {
+        setInput("Eat book\n q");
+        BibliotecaApp.main(null);
+        assertThat(output.toString(), endsWith(Utils.INVALID_OPTION + "\n"));
+    }
+
     public void setInput(String string) {
         System.setIn(new ByteArrayInputStream(string.getBytes()));
     }
