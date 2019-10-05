@@ -32,10 +32,10 @@ class ConsolePrinter {
         System.out.println(Utils.FAILED_RETURN_MESSAGE);
     }
 
-    static void printBookList(List<Book> books) {
-        for (Book book : books) {
-            if (book.isAvailable()) {
-                printBook(book);
+    static void printBookList(List<Media> books) {
+        for (Media book : books) {
+            if (book.isBook() && book.isAvailable()) {
+                printBook((Book) book);
             }
         }
     }

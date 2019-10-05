@@ -11,4 +11,9 @@ class Book extends Media {
     String getAuthor() {
         return _author;
     }
+
+    @Override
+    boolean isBook() {
+        return true;
+    }
 }

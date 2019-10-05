@@ -36,4 +36,12 @@ abstract class Media {
     void returnBook() {
         _quantityAvailable++;
     }
+
+    boolean isBook() {
+        return false;
+    }
+
+    boolean isMovie() {
+        return false;
+    }
 }
