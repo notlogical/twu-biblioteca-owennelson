@@ -21,14 +21,9 @@ public class OutputTests {
     private final PrintStream originalOutput = System.out;
     private final InputStream originalInput = System.in;
 
-    private BibliotecaApp biblioteca;
-
-
     @Before
     public void init() {
         System.setOut(new PrintStream(output));
-        biblioteca = new BibliotecaApp();
-        biblioteca.main(null);
     }
 
     @After
@@ -39,17 +34,22 @@ public class OutputTests {
 
     @Test
     public void testWelcomeMessage() {
+        System.setIn(new ByteArrayInputStream("q".getBytes()));
+        BibliotecaApp.main(null);
         assertThat(output.toString(), startsWith(Utils.WELCOME_TEXT + "\n"));
     }
 
     @Test
     public void testOptionsDisplay() {
+        System.setIn(new ByteArrayInputStream("q".getBytes()));
+        BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.OPTION_LIST));
     }
 
     @Test
     public void testBookList() {
-        System.setIn(new ByteArrayInputStream("List of books".getBytes()));
+        System.setIn(new ByteArrayInputStream("List of books\n q".getBytes()));
+        BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.BOOK_LIST));
     }
 }
