@@ -32,7 +32,7 @@ public class Book {
     }
 
     public boolean isCheckedOut() {
-        return _quantityAvailable > _maxQuantity;
+        return _quantityAvailable < _maxQuantity;
     }
 
     void checkout() {
