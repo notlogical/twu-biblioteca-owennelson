@@ -83,7 +83,8 @@ public class OutputTests {
         setInput("Checkout Sled Driver\nReturn Sled Driver\nList of " +
                 "books\nQuit");
         BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.BOOK_LIST));
+        assertThat(output.toString(), endsWith(Utils
+                .SUCCESSFUL_RETURN_MESSAGE + "\n" + Utils.BOOK_LIST));
     }
 
     private void setInput(String string) {

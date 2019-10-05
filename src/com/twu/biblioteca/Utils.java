@@ -42,4 +42,7 @@ class Utils {
 
     static final String FAILED_CHECKOUT_MESSAGE = "Sorry, that book is not " +
             "available";
+
+    static final String SUCCESSFUL_RETURN_MESSAGE = "Thank you for returning " +
+            "the book";
 }
