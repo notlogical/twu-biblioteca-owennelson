@@ -4,11 +4,13 @@ public class Book {
     private String _title;
     private String _author;
     private int _year;
+    private int _quantityAvailable;
 
     Book(String title, String author, int year) {
         _title = title;
         _author = author;
         _year = year;
+        _quantityAvailable = 1;
     }
 
     public String getTitle() {
@@ -21,5 +23,9 @@ public class Book {
 
     public int getYear() {
         return _year;
+    }
+
+    public boolean isAvailable() {
+        return _quantityAvailable > 0;
     }
 }

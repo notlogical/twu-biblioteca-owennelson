@@ -18,7 +18,9 @@ class ConsolePrinter {
 
     static void printBookList(List<Book> books) {
         for (Book book : books) {
-            printBook(book);
+            if (book.isAvailable()) {
+                printBook(book);
+            }
         }
     }
 
