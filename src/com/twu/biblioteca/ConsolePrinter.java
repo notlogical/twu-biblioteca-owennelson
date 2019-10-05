@@ -20,6 +20,10 @@ class ConsolePrinter {
         System.out.println(Utils.SUCCESSFUL_CHECKOUT_MESSAGE);
     }
 
+    static void printCheckoutFailure() {
+        System.out.println(Utils.FAILED_CHECKOUT_MESSAGE);
+    }
+
     static void printBookList(List<Book> books) {
         for (Book book : books) {
             if (book.isAvailable()) {

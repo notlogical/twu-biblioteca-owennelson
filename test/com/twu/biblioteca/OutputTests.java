@@ -74,7 +74,8 @@ public class OutputTests {
     public void testFailedCheckout() {
         setInput("Checkout The Cooking Gene\nQuit");
         BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.FAILED_CHECKOUT_MESSAGE));
+        assertThat(output.toString(), endsWith(Utils.FAILED_CHECKOUT_MESSAGE
+                + "\n"));
     }
 
     private void setInput(String string) {

@@ -49,6 +49,8 @@ public class BibliotecaApp {
         if (book != null && book.isAvailable()){
             book.checkout();
             ConsolePrinter.printCheckoutSuccess();
+        } else {
+            ConsolePrinter.printCheckoutFailure();
         }
     }
 
