@@ -58,9 +58,11 @@ public class BibliotecaApp {
 
     private static void returnBook(String bookToReturn) {
         Book book = findBook(bookToReturn);
-        if (book != null) {
+        if (book != null && book.isCheckedOut()) {
             book.returnBook();
             ConsolePrinter.printReturnSuccess();
+        } else {
+            ConsolePrinter.printReturnFailure();
         }
     }
 

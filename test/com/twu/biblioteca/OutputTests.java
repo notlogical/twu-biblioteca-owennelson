@@ -91,7 +91,8 @@ public class OutputTests {
     public void testFailedReturn() {
         setInput("Return Bosch Automotive Handbook\nQuit");
         BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.FAILED_RETURN_MESSAGE));
+        assertThat(output.toString(), endsWith(Utils.FAILED_RETURN_MESSAGE +
+                "\n"));
     }
 
     private void setInput(String string) {
