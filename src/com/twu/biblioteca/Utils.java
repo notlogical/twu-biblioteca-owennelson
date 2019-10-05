@@ -31,6 +31,7 @@ class Utils {
             "Options:\n" +
             "-List of books\n" +
             "-Checkout [book title]\n" +
+            "-Return [book title]\n" +
             "-Quit";
 
     static final String INVALID_OPTION_MESSAGE = "Please select a valid " +

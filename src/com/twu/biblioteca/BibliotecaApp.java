@@ -22,10 +22,12 @@ public class BibliotecaApp {
             String input = _consoleIn.nextLine();
             if (input.equals("List of books")) {
                 ConsolePrinter.printBookList(_books);
-            } else if (input.equals("Quit")){
+            } else if (input.equals("Quit")) {
                 _running = false;
             } else if (input.startsWith("Checkout")) {
-                checkout(input.replaceFirst("Checkout ", ""));
+                checkoutBook(input.replaceFirst("Checkout ", ""));
+            } else if (input.startsWith("Return")) {
+                returnBook(input.replaceFirst("Return ", ""));
             } else {
                 ConsolePrinter.printInvalidOptionWarning();
             }
@@ -44,7 +46,7 @@ public class BibliotecaApp {
         _books.add(new Book("Sled Driver", "Brian Shul", 1991));
     }
 
-    private static void checkout(String bookToCheckout) {
+    private static void checkoutBook(String bookToCheckout) {
         Book book = findBook(bookToCheckout);
         if (book != null && book.isAvailable()){
             book.checkout();
@@ -54,9 +56,16 @@ public class BibliotecaApp {
         }
     }
 
-    private static Book findBook(String bookToCheckout) {
+    private static void returnBook(String bookToReturn) {
+        Book book = findBook(bookToReturn);
+        if (book != null) {
+            book.returnBook();
+        }
+    }
+
+    private static Book findBook(String bookToFind) {
         for (Book book : _books) {
-            if (book.getTitle().equals(bookToCheckout)) {
+            if (book.getTitle().equals(bookToFind)) {
                 return book;
             }
         }

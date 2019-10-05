@@ -32,4 +32,8 @@ public class Book {
     void checkout() {
         _quantityAvailable--;
     }
+
+    void returnBook() {
+        _quantityAvailable++;
+    }
 }
