@@ -6,10 +6,15 @@ import java.util.List;
 public class BibliotecaApp {
 
     private static List<Book> _books;
+    //private static boolean _running;
 
     public static void main(String[] args) {
+        //_running = true;
         loadBooks();
         ConsolePrinter.printWelcome();
+/*        while (_running) {
+
+        }*/
         ConsolePrinter.printBookList(_books);
     }
 

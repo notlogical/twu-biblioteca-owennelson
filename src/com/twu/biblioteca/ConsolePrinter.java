@@ -28,7 +28,7 @@ public class ConsolePrinter {
     }
 
     private static String trimText(String text) {
-        return text.substring(0, 27) + "...";
+        return text.substring(0, fieldWidth - 3) + "...";
     }
 
     private static String padText(String text) {

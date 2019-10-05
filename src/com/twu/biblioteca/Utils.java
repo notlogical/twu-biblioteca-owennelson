@@ -16,4 +16,7 @@ public class Utils {
                     "|1967\n" +
             "Sled Driver                   |Brian Shul                    " +
                     "|1991\n";
+
+    public static final String OPTION_LIST =
+            "List of books\n";
 }
