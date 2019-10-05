@@ -60,6 +60,7 @@ public class BibliotecaApp {
         Book book = findBook(bookToReturn);
         if (book != null) {
             book.returnBook();
+            ConsolePrinter.printReturnSuccess();
         }
     }
 
