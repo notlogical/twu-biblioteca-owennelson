@@ -38,4 +38,7 @@ class Utils {
 
     static final String SUCCESSFUL_CHECKOUT_MESSAGE = "Thank you! Enjoy the " +
             "book";
+
+    static final String FAILED_CHECKOUT_MESSAGE = "Sorry, that book is not " +
+            "available";
 }

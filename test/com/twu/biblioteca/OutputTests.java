@@ -70,6 +70,13 @@ public class OutputTests {
                 .BOOK_LIST_AFTER_CHECKOUT));
     }
 
+    @Test
+    public void testFailedCheckout() {
+        setInput("Checkout The Cooking Gene\nQuit");
+        BibliotecaApp.main(null);
+        assertThat(output.toString(), endsWith(Utils.FAILED_CHECKOUT_MESSAGE));
+    }
+
     private void setInput(String string) {
         System.setIn(new ByteArrayInputStream(string.getBytes()));
     }
