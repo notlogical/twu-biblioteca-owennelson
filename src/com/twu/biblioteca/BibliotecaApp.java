@@ -15,6 +15,7 @@ public class BibliotecaApp {
         _consoleIn = new Scanner(System.in);
         loadBooks();
         ConsolePrinter.printWelcome();
+        ConsolePrinter.printOptions();
         while (_running) {
             String input = _consoleIn.nextLine();
             if (input.equals("List of books")) {

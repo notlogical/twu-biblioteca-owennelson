@@ -43,7 +43,7 @@ public class OutputTests {
     public void testOptionsDisplay() {
         setInput("q");
         BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.OPTION_LIST));
+        assertThat(output.toString(), endsWith(Utils.OPTION_LIST + "\n"));
     }
 
     @Test

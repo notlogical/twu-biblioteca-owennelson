@@ -18,5 +18,6 @@ public class Utils {
                     "|1991\n";
 
     public static final String OPTION_LIST =
-            "List of books\n";
+            "Options:\n" +
+            "-List of books";
 }

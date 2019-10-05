@@ -8,6 +8,10 @@ public class ConsolePrinter {
         System.out.println(Utils.WELCOME_TEXT);
     }
 
+    public static void printOptions() {
+        System.out.println(Utils.OPTION_LIST);
+    }
+
     public static void printBookList(List<Book> books) {
         for (Book book : books) {
             printBook(book);
