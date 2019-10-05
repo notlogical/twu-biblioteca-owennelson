@@ -87,6 +87,13 @@ public class OutputTests {
                 .SUCCESSFUL_RETURN_MESSAGE + "\n" + Utils.BOOK_LIST));
     }
 
+    @Test
+    public void testFailedReturn() {
+        setInput("Return Bosch Automotive Handbook\nQuit");
+        BibliotecaApp.main(null);
+        assertThat(output.toString(), endsWith(Utils.FAILED_RETURN_MESSAGE));
+    }
+
     private void setInput(String string) {
         System.setIn(new ByteArrayInputStream(string.getBytes()));
     }

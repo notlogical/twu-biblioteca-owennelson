@@ -45,4 +45,7 @@ class Utils {
 
     static final String SUCCESSFUL_RETURN_MESSAGE = "Thank you for returning " +
             "the book";
+
+    static final String FAILED_RETURN_MESSAGE = "That is not a valid book to " +
+            "return.";
 }
