@@ -16,16 +16,16 @@ class ConsolePrinter {
         System.out.println(Utils.INVALID_OPTION_MESSAGE);
     }
 
-    static void printCheckoutSuccess() {
-        System.out.println(Utils.SUCCESSFUL_CHECKOUT_MESSAGE);
+    static void printCheckoutSuccess(String descriptor) {
+        System.out.println("Thank you! Enjoy the " + descriptor);
     }
 
     static void printCheckoutFailure() {
         System.out.println(Utils.FAILED_CHECKOUT_MESSAGE);
     }
 
-    static void printReturnSuccess() {
-        System.out.println(Utils.SUCCESSFUL_RETURN_MESSAGE);
+    static void printReturnSuccess(String descriptor) {
+        System.out.println("Thank you for returning the " + descriptor);
     }
 
     static void printReturnFailure() {

@@ -61,7 +61,7 @@ public class BibliotecaApp {
         Media media = findMedia(bookToCheckout);
         if (media != null && media.isAvailable()){
             media.checkout();
-            ConsolePrinter.printCheckoutSuccess();
+            ConsolePrinter.printCheckoutSuccess(media.getDescriptor());
         } else {
             ConsolePrinter.printCheckoutFailure();
         }
@@ -71,7 +71,7 @@ public class BibliotecaApp {
         Media media = findMedia(bookToReturn);
         if (media != null && media.isCheckedOut()) {
             media.returnBook();
-            ConsolePrinter.printReturnSuccess();
+            ConsolePrinter.printReturnSuccess(media.getDescriptor());
         } else {
             ConsolePrinter.printReturnFailure();
         }

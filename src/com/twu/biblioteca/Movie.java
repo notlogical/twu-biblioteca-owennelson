@@ -8,6 +8,7 @@ public class Movie extends Media{
         super(title, year);
         _director = director;
         _rating = rating;
+        _descriptor = "movie";
     }
 
     String getDirector() {

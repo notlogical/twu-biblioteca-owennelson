@@ -45,22 +45,28 @@ class Utils {
             "Options:\n" +
             "-List of books\n" +
             "-List of movies\n" +
-            "-Checkout [book title]\n" +
-            "-Return [book title]\n" +
+            "-Checkout [title]\n" +
+            "-Return [title]\n" +
             "-Quit";
 
     static final String INVALID_OPTION_MESSAGE = "Please select a valid " +
             "option!";
 
-    static final String SUCCESSFUL_CHECKOUT_MESSAGE = "Thank you! Enjoy the " +
-            "book";
-
-    static final String FAILED_CHECKOUT_MESSAGE = "Sorry, that book is not " +
-            "available";
-
-    static final String SUCCESSFUL_RETURN_MESSAGE = "Thank you for returning " +
+    static final String SUCCESSFUL_BOOK_CHECKOUT_MESSAGE = "Thank you! Enjoy " +
             "the book";
 
-    static final String FAILED_RETURN_MESSAGE = "That is not a valid book to " +
+    static final String SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE = "Thank you! Enjoy" +
+            " the movie";
+
+    static final String FAILED_CHECKOUT_MESSAGE = "Sorry, that item is not " +
+            "available";
+
+    static final String SUCCESSFUL_BOOK_RETURN_MESSAGE = "Thank you for " +
+            "returning the book";
+
+    static final String SUCCESSFUL_MOVIE_RETURN_MESSAGE = "Thank you for " +
+            "returning the movie";
+
+    static final String FAILED_RETURN_MESSAGE = "That is not a valid item to " +
             "return.";
 }

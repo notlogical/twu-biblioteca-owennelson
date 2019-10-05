@@ -71,7 +71,7 @@ public class OutputTests {
         setInput("Checkout Clean Code\nList of books\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils
-                .SUCCESSFUL_CHECKOUT_MESSAGE + "\n" + Utils
+                .SUCCESSFUL_BOOK_CHECKOUT_MESSAGE + "\n" + Utils
                 .BOOK_LIST_AFTER_CHECKOUT));
     }
 
@@ -80,7 +80,7 @@ public class OutputTests {
         setInput("Checkout Airplane!\nList of movies\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils
-                .SUCCESSFUL_CHECKOUT_MESSAGE + "\n" + Utils
+                .SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE + "\n" + Utils
                 .MOVIE_LIST_AFTER_CHECKOUT));
     }
 
@@ -98,7 +98,16 @@ public class OutputTests {
                 "books\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils
-                .SUCCESSFUL_RETURN_MESSAGE + "\n" + Utils.BOOK_LIST));
+                .SUCCESSFUL_BOOK_RETURN_MESSAGE + "\n" + Utils.BOOK_LIST));
+    }
+
+    @Test
+    public void testReturnMovie() {
+        setInput("Checkout The Pink Panther\nReturn The Pink Panther\nList of" +
+                " movies\nQuit");
+        BibliotecaApp.main(null);
+        assertThat(output.toString(), endsWith(Utils
+                .SUCCESSFUL_MOVIE_RETURN_MESSAGE + "\n" + Utils.MOVIE_LIST));
     }
 
     @Test

@@ -6,6 +6,7 @@ class Book extends Media {
     Book(String title, String author, int year) {
         super(title, year);
         _author = author;
+        _descriptor = "book";
     }
 
     String getAuthor() {

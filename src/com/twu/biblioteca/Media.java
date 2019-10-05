@@ -5,6 +5,7 @@ abstract class Media {
     private int _year;
     private int _quantityAvailable;
     private int _maxQuantity;
+    String _descriptor;
 
     Media(String title, int year) {
         _title = title;
@@ -35,6 +36,10 @@ abstract class Media {
 
     void returnBook() {
         _quantityAvailable++;
+    }
+
+    String getDescriptor() {
+        return _descriptor;
     }
 
     boolean isBook() {
