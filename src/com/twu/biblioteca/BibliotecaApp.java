@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import org.hamcrest.core.StringEndsWith;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -22,6 +24,8 @@ public class BibliotecaApp {
                 ConsolePrinter.printBookList(_books);
             } else if (input.equals("Quit")){
                 _running = false;
+            } else if (input.startsWith("Checkout")) {
+                checkout(input.replaceFirst("Checkout ", ""));
             } else {
                 ConsolePrinter.printInvalidOptionWarning();
             }
@@ -40,4 +44,16 @@ public class BibliotecaApp {
         _books.add(new Book("Sled Driver", "Brian Shul", 1991));
     }
 
+    private static void checkout(String bookToCheckout) {
+        findBook(bookToCheckout).checkout();
+    }
+
+    private static Book findBook(String bookToCheckout) {
+        for (Book book : _books) {
+            if (book.getTitle().equals(bookToCheckout)) {
+                return book;
+            }
+        }
+        return null;
+    }
 }

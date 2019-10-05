@@ -30,6 +30,7 @@ class Utils {
     static final String OPTION_LIST =
             "Options:\n" +
             "-List of books\n" +
+            "-Checkout [book title]\n" +
             "-Quit";
 
     static final String INVALID_OPTION_WARNING = "Please select a valid " +

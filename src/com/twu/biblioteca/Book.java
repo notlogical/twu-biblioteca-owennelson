@@ -28,4 +28,8 @@ public class Book {
     public boolean isAvailable() {
         return _quantityAvailable > 0;
     }
+
+    void checkout() {
+        _quantityAvailable--;
+    }
 }
