@@ -21,7 +21,7 @@ public class OutputTests {
     private final PrintStream originalOutput = System.out;
     private final InputStream originalInput = System.in;
 
-    BibliotecaApp biblioteca;
+    private BibliotecaApp biblioteca;
 
 
     @Before

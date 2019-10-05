@@ -2,20 +2,27 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class BibliotecaApp {
 
     private static List<Book> _books;
-    //private static boolean _running;
+    private static Scanner _consoleIn;
+    private static boolean _running;
 
     public static void main(String[] args) {
-        //_running = true;
+        _running = true;
+        _consoleIn = new Scanner(System.in);
         loadBooks();
         ConsolePrinter.printWelcome();
-/*        while (_running) {
-
-        }*/
-        ConsolePrinter.printBookList(_books);
+        while (_running) {
+            String input = _consoleIn.nextLine();
+            if (input.equals("List of books")) {
+                ConsolePrinter.printBookList(_books);
+            } else {
+                _running = false;
+            }
+        }
     }
 
     private static void loadBooks() {
