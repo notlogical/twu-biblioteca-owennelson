@@ -16,6 +16,10 @@ class ConsolePrinter {
         System.out.println(Utils.INVALID_OPTION_MESSAGE);
     }
 
+    static void printCheckoutSuccess() {
+        System.out.println(Utils.SUCCESSFUL_CHECKOUT_MESSAGE);
+    }
+
     static void printBookList(List<Book> books) {
         for (Book book : books) {
             if (book.isAvailable()) {

@@ -45,7 +45,11 @@ public class BibliotecaApp {
     }
 
     private static void checkout(String bookToCheckout) {
-        findBook(bookToCheckout).checkout();
+        Book book = findBook(bookToCheckout);
+        if (book != null && book.isAvailable()){
+            book.checkout();
+            ConsolePrinter.printCheckoutSuccess();
+        }
     }
 
     private static Book findBook(String bookToCheckout) {
