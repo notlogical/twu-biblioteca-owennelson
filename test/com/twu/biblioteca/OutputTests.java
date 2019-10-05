@@ -34,34 +34,34 @@ public class OutputTests {
 
     @Test
     public void testWelcomeMessage() {
-        setInput("q");
+        setInput("Quit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), startsWith(Utils.WELCOME_TEXT + "\n"));
     }
 
     @Test
     public void testOptionsDisplay() {
-        setInput("q");
+        setInput("Quit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.OPTION_LIST + "\n"));
     }
 
     @Test
     public void testBookList() {
-        setInput("List of books\nq");
+        setInput("List of books\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.BOOK_LIST));
     }
 
     @Test
     public void testInvalidOption() {
-        setInput("Eat book\nq");
+        setInput("Eat book\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.INVALID_OPTION_WARNING +
                 "\n"));
     }
 
-    public void setInput(String string) {
+    private void setInput(String string) {
         System.setIn(new ByteArrayInputStream(string.getBytes()));
     }
 }

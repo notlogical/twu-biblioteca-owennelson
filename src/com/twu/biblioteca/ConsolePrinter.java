@@ -40,6 +40,6 @@ class ConsolePrinter {
     }
 
     private static String padText(String text) {
-        return text.format("%-" + fieldWidth + "s", text);
+        return String.format("%-" + fieldWidth + "s", text);
     }
 }

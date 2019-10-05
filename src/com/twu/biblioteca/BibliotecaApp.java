@@ -20,7 +20,7 @@ public class BibliotecaApp {
             String input = _consoleIn.nextLine();
             if (input.equals("List of books")) {
                 ConsolePrinter.printBookList(_books);
-            } else if (input.equals("q")){
+            } else if (input.equals("Quit")){
                 _running = false;
             } else {
                 ConsolePrinter.printInvalidOptionWarning();
