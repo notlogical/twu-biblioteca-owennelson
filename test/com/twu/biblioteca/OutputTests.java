@@ -61,6 +61,13 @@ public class OutputTests {
                 "\n"));
     }
 
+    @Test
+    public void testCheckoutBook() {
+        setInput("Checkout Clean Code\nList of books\nQuit");
+        BibliotecaApp.main(null);
+        assertThat(output.toString(), endsWith(Utils.BOOK_LIST_AFTER_CHECKOUT));
+    }
+
     private void setInput(String string) {
         System.setIn(new ByteArrayInputStream(string.getBytes()));
     }

@@ -17,6 +17,16 @@ class Utils {
             "Sled Driver                   |Brian Shul                    " +
                     "|1991\n";
 
+    static final String BOOK_LIST_AFTER_CHECKOUT =
+            "Bosch Automotive Handbook     |Robert Bosch GmbH             " +
+                    "|1932\n" +
+            "Modern Global Seismology      |Thorne Lay & Terry C. Wallace " +
+                    "|1995\n" +
+            "One Hundred Years of Solitude |Gabriel Garcia Marquez        " +
+                    "|1967\n" +
+            "Sled Driver                   |Brian Shul                    " +
+                    "|1991\n";
+
     static final String OPTION_LIST =
             "Options:\n" +
             "-List of books\n" +
