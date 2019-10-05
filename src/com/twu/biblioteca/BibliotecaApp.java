@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import org.hamcrest.core.StringEndsWith;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,21 +7,23 @@ import java.util.Scanner;
 public class BibliotecaApp {
 
     private static List<Book> _books;
-    private static Scanner _consoleIn;
-    private static boolean _running;
 
     public static void main(String[] args) {
-        _running = true;
-        _consoleIn = new Scanner(System.in);
+        Scanner consoleIn = new Scanner(System.in);
         loadBooks();
         ConsolePrinter.printWelcome();
         ConsolePrinter.printOptions();
-        while (_running) {
-            String input = _consoleIn.nextLine();
+        readInput(consoleIn);
+    }
+
+    private static void readInput(Scanner consoleIn) {
+        boolean running = true;
+        while (running) {
+            String input = consoleIn.nextLine();
             if (input.equals("List of books")) {
                 ConsolePrinter.printBookList(_books);
             } else if (input.equals("Quit")) {
-                _running = false;
+                running = false;
             } else if (input.startsWith("Checkout")) {
                 checkoutBook(input.replaceFirst("Checkout ", ""));
             } else if (input.startsWith("Return")) {
