@@ -35,6 +35,12 @@ class Utils {
             "The Pink Panther              |1963|Blake Edwards               " +
                     "  |7\n";
 
+    static final String MOVIE_LIST_AFTER_CHECKOUT =
+            "The Lego Movie                |2014|Chris Miller & Phil Lord    " +
+                    "  |8\n" +
+            "The Pink Panther              |1963|Blake Edwards               " +
+                    "  |7\n";
+
     static final String OPTION_LIST =
             "Options:\n" +
             "-List of books\n" +

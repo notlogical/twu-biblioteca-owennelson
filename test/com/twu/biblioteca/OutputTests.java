@@ -76,6 +76,15 @@ public class OutputTests {
     }
 
     @Test
+    public void testCheckoutMovie() {
+        setInput("Checkout Airplane!\nList of movies\nQuit");
+        BibliotecaApp.main(null);
+        assertThat(output.toString(), endsWith(Utils
+                .SUCCESSFUL_CHECKOUT_MESSAGE + "\n" + Utils
+                .MOVIE_LIST_AFTER_CHECKOUT));
+    }
+
+    @Test
     public void testFailedCheckout() {
         setInput("Checkout The Cooking Gene\nQuit");
         BibliotecaApp.main(null);
