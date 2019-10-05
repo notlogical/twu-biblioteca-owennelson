@@ -27,6 +27,14 @@ class Utils {
             "Sled Driver                   |Brian Shul                    " +
                     "|1991\n";
 
+    static final String MOVIE_LIST =
+            "The Pink Panther              |1963|Blake Edwards               " +
+                    "  |7      \n" +
+            "The Lego Movie                |2014|Chris Miller & Phil Lord    " +
+                    "  |8      \n" +
+            "Airplane!                     |1980|David Zucker, Jim Abrahams ." +
+                    "..|8      \n";
+
     static final String OPTION_LIST =
             "Options:\n" +
             "-List of books\n" +

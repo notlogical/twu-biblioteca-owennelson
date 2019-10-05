@@ -53,6 +53,12 @@ public class OutputTests {
     }
 
     @Test
+    public void testMovieList() {
+        setInput("List of movies\nQuit");
+        BibliotecaApp.main(null);
+        assertThat(output.toString(), endsWith(Utils.MOVIE_LIST));
+    }
+    @Test
     public void testInvalidOption() {
         setInput("Eat book\nQuit");
         BibliotecaApp.main(null);
