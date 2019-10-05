@@ -21,5 +21,6 @@ class Utils {
             "Options:\n" +
             "-List of books";
 
-    static final String INVALID_OPTION = "Please select a valid option!";
+    static final String INVALID_OPTION_WARNING = "Please select a valid " +
+            "option!";
 }

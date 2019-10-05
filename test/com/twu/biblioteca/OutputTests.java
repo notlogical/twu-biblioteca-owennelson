@@ -48,16 +48,17 @@ public class OutputTests {
 
     @Test
     public void testBookList() {
-        setInput("List of books\n q");
+        setInput("List of books\nq");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.BOOK_LIST));
     }
 
     @Test
     public void testInvalidOption() {
-        setInput("Eat book\n q");
+        setInput("Eat book\nq");
         BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.INVALID_OPTION + "\n"));
+        assertThat(output.toString(), endsWith(Utils.INVALID_OPTION_WARNING +
+                "\n"));
     }
 
     public void setInput(String string) {

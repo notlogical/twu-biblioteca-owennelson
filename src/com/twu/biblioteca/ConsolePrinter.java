@@ -1,18 +1,22 @@
 package com.twu.biblioteca;
 import java.util.List;
 
-public class ConsolePrinter {
+class ConsolePrinter {
     private static int fieldWidth = 30;
 
-    public static void printWelcome() {
+    static void printWelcome() {
         System.out.println(Utils.WELCOME_TEXT);
     }
 
-    public static void printOptions() {
+    static void printOptions() {
         System.out.println(Utils.OPTION_LIST);
     }
 
-    public static void printBookList(List<Book> books) {
+    static void printInvalidOptionWarning() {
+        System.out.println(Utils.INVALID_OPTION_WARNING);
+    }
+
+    static void printBookList(List<Book> books) {
         for (Book book : books) {
             printBook(book);
         }
