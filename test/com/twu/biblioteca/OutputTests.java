@@ -36,7 +36,7 @@ public class OutputTests {
     public void testWelcomeMessage() {
         setInput("Quit");
         BibliotecaApp.main(null);
-        assertThat(output.toString(), startsWith(Utils.WELCOME_TEXT + "\n"));
+        assertThat(output.toString(), startsWith(Utils.WELCOME_MESSAGE + "\n"));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class OutputTests {
     public void testInvalidOption() {
         setInput("Eat book\nQuit");
         BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.INVALID_OPTION_WARNING +
+        assertThat(output.toString(), endsWith(Utils.INVALID_OPTION_MESSAGE +
                 "\n"));
     }
 
@@ -65,7 +65,9 @@ public class OutputTests {
     public void testCheckoutBook() {
         setInput("Checkout Clean Code\nList of books\nQuit");
         BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.BOOK_LIST_AFTER_CHECKOUT));
+        assertThat(output.toString(), endsWith(Utils
+                .SUCCESSFUL_CHECKOUT_MESSAGE + "\n" + Utils
+                .BOOK_LIST_AFTER_CHECKOUT));
     }
 
     private void setInput(String string) {

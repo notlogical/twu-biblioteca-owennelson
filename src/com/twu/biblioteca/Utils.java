@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 class Utils {
 
-    static final String WELCOME_TEXT = "Welcome to Biblioteca. Your " +
+    static final String WELCOME_MESSAGE = "Welcome to Biblioteca. Your " +
             "one-stop-shop for great book titles in Bangalore!";
 
     static final String BOOK_LIST =
@@ -33,6 +33,9 @@ class Utils {
             "-Checkout [book title]\n" +
             "-Quit";
 
-    static final String INVALID_OPTION_WARNING = "Please select a valid " +
+    static final String INVALID_OPTION_MESSAGE = "Please select a valid " +
             "option!";
+
+    static final String SUCCESSFUL_CHECKOUT_MESSAGE = "Thank you! Enjoy the " +
+            "book";
 }

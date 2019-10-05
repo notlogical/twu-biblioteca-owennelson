@@ -5,7 +5,7 @@ class ConsolePrinter {
     private static int fieldWidth = 30;
 
     static void printWelcome() {
-        System.out.println(Utils.WELCOME_TEXT);
+        System.out.println(Utils.WELCOME_MESSAGE);
     }
 
     static void printOptions() {
@@ -13,7 +13,7 @@ class ConsolePrinter {
     }
 
     static void printInvalidOptionWarning() {
-        System.out.println(Utils.INVALID_OPTION_WARNING);
+        System.out.println(Utils.INVALID_OPTION_MESSAGE);
     }
 
     static void printBookList(List<Book> books) {
