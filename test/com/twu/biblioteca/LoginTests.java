@@ -31,7 +31,7 @@ public class LoginTests {
 
     @Test
     public void testLogin() {
-        setInput("Checkout Clean Code");
+        setInput("Checkout Clean Code\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.LOGIN_CHECKOUT_MESSAGE +
                 "\n"));

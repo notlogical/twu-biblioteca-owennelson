@@ -58,22 +58,30 @@ public class BibliotecaApp {
     }
 
     private static void checkoutBook(String bookToCheckout) {
-        Media media = findMedia(bookToCheckout);
-        if (media != null && media.isAvailable()){
-            media.checkout();
-            ConsolePrinter.printCheckoutSuccess(media.getDescriptor());
+        if (isLoggedIn()) {
+            Media media = findMedia(bookToCheckout);
+            if (media != null && media.isAvailable()) {
+                media.checkout();
+                ConsolePrinter.printCheckoutSuccess(media.getDescriptor());
+            } else {
+                ConsolePrinter.printCheckoutFailure();
+            }
         } else {
-            ConsolePrinter.printCheckoutFailure();
+            ConsolePrinter.printLoginToCheckout();
         }
     }
 
     private static void returnBook(String bookToReturn) {
-        Media media = findMedia(bookToReturn);
-        if (media != null && media.isCheckedOut()) {
-            media.returnBook();
-            ConsolePrinter.printReturnSuccess(media.getDescriptor());
+        if (isLoggedIn()) {
+            Media media = findMedia(bookToReturn);
+            if (media != null && media.isCheckedOut()) {
+                media.returnBook();
+                ConsolePrinter.printReturnSuccess(media.getDescriptor());
+            } else {
+                ConsolePrinter.printReturnFailure();
+            }
         } else {
-            ConsolePrinter.printReturnFailure();
+            ConsolePrinter.printLoginToReturn();
         }
     }
 
@@ -84,5 +92,9 @@ public class BibliotecaApp {
             }
         }
         return null;
+    }
+
+    private static boolean isLoggedIn() {
+        return false;
     }
 }

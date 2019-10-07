@@ -1,4 +1,6 @@
 package com.twu.biblioteca;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+
 import java.util.List;
 
 class ConsolePrinter {
@@ -24,12 +26,20 @@ class ConsolePrinter {
         System.out.println(Utils.FAILED_CHECKOUT_MESSAGE);
     }
 
+    static void printLoginToCheckout() {
+        System.out.println(Utils.LOGIN_CHECKOUT_MESSAGE);
+    }
+
     static void printReturnSuccess(String descriptor) {
         System.out.println("Thank you for returning the " + descriptor);
     }
 
     static void printReturnFailure() {
         System.out.println(Utils.FAILED_RETURN_MESSAGE);
+    }
+
+    static void printLoginToReturn() {
+        System.out.println(Utils.LOGIN_RETURN_MESSAGE);
     }
 
     static void printBookList(List<Media> allMedia) {

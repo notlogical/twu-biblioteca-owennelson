@@ -73,5 +73,7 @@ class Utils {
     static final String LOGIN = "123-4567\n\n";
 
     static final String LOGIN_CHECKOUT_MESSAGE = "Please login to checkout " +
-            "materials";
+            "items";
+
+    static final String LOGIN_RETURN_MESSAGE = "Please login to return items";
 }
