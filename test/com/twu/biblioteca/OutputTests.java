@@ -119,6 +119,11 @@ public class OutputTests {
     }
 
     private void setInput(String string) {
-        System.setIn(new ByteArrayInputStream(string.getBytes()));
+        System.setIn(new ByteArrayInputStream(prependTextWithLogin(string)
+                .getBytes()));
+    }
+
+    private String prependTextWithLogin(String string) {
+        return Utils.LOGIN + string;
     }
 }
