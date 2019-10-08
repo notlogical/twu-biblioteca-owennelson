@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import org.hamcrest.core.StringEndsWith;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,10 +9,12 @@ import java.util.Scanner;
 public class BibliotecaApp {
 
     private static List<Media> _allMedia;
+    private static String _currentUser;
 
     public static void main(String[] args) {
         Scanner consoleIn = new Scanner(System.in);
         _allMedia = new ArrayList<>();
+        _currentUser = null;
         loadBooks();
         loadMovies();
         ConsolePrinter.printWelcome();
@@ -28,6 +32,8 @@ public class BibliotecaApp {
                 ConsolePrinter.printMovieList(_allMedia);
             } else if (input.equals("Quit")) {
                 running = false;
+            } else if (input.equals("Log in")) {
+                attemptLogin(consoleIn);
             } else if (input.startsWith("Checkout")) {
                 checkoutBook(input.replaceFirst("Checkout ", ""));
             } else if (input.startsWith("Return")) {
@@ -95,6 +101,21 @@ public class BibliotecaApp {
     }
 
     private static boolean isLoggedIn() {
-        return false;
+        return _currentUser != null;
+    }
+
+    private static void attemptLogin(Scanner consoleIn) {
+        ConsolePrinter.printLoginPrompt();
+        String libraryNumber = consoleIn.nextLine();
+        ConsolePrinter.printPasswordPrompt();
+        String password = consoleIn.nextLine();
+        checkPassword(libraryNumber, password);
+    }
+
+    private static void checkPassword(String libraryNumber, String password) {
+        if (true) {
+            _currentUser = libraryNumber;
+            ConsolePrinter.printLoginSuccess();
+        }
     }
 }

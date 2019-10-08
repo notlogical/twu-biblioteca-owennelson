@@ -18,6 +18,18 @@ class ConsolePrinter {
         System.out.println(Utils.INVALID_OPTION_MESSAGE);
     }
 
+    static void printLoginPrompt() {
+        System.out.println(Utils.LOGIN_PROMPT);
+    }
+
+    static void printPasswordPrompt() {
+        System.out.println(Utils.PASSWORD_PROMPT);
+    }
+
+    static void printLoginSuccess() {
+        System.out.println(Utils.LOGIN_SUCCESS_MESSAGE);
+    }
+
     static void printCheckoutSuccess(String descriptor) {
         System.out.println("Thank you! Enjoy the " + descriptor);
     }
