@@ -42,7 +42,8 @@ public class OutputTests {
     public void testOptionsDisplay() {
         setInput("Quit");
         BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.OPTION_LIST + "\n"));
+        assertThat(output.toString(), endsWith(Utils.OPTION_LIST + "\n" +
+                Utils.LOGIN_SEQUENCE));
     }
 
     @Test

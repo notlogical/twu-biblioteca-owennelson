@@ -83,4 +83,7 @@ class Utils {
             "format 000-0000";
 
     static final String PASSWORD_PROMPT = "Please enter password";
+
+    static final String LOGIN_SEQUENCE = LOGIN_PROMPT + "\n" +
+            PASSWORD_PROMPT + "\n" + LOGIN_SUCCESS_MESSAGE + "\n";
 }
