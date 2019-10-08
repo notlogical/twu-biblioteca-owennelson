@@ -30,11 +30,21 @@ public class LoginTests {
     }
 
     @Test
-    public void testLogin() {
+    public void testCheckoutWithoutLogin() {
         setInput("Checkout Clean Code\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.LOGIN_CHECKOUT_MESSAGE +
                 "\n"));
+    }
+
+    @Test
+    public void testLoggingIn() {
+        setInput(Utils.LOGIN + "Checkout Clean Code\nQuit");
+        BibliotecaApp.main(null);
+        assertThat(output.toString(), endsWith(Utils.LOGIN_SUCCESS_MESSAGE +
+                        "\n" + Utils.SUCCESSFUL_BOOK_CHECKOUT_MESSAGE + "\n"));
+        //In: login, checkout book, quit
+        //Out: login success, checkout success
     }
 
     private void setInput(String string) {

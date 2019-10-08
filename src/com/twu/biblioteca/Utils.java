@@ -70,7 +70,9 @@ class Utils {
     static final String FAILED_RETURN_MESSAGE = "That is not a valid item to " +
             "return.";
 
-    static final String LOGIN = "123-4567\n\n";
+    static final String LOGIN = "Login\n123-4567\n\n";
+
+    static final String LOGIN_SUCCESS_MESSAGE = "Thank you for logging in";
 
     static final String LOGIN_CHECKOUT_MESSAGE = "Please login to checkout " +
             "items";
