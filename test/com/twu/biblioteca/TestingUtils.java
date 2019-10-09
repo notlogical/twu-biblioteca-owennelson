@@ -3,6 +3,9 @@ package com.twu.biblioteca;
 import java.io.ByteArrayInputStream;
 
 public class TestingUtils {
+    TestingUtils() {
+
+    }
     static void setInput(String string) {
         System.setIn(new ByteArrayInputStream(string.getBytes()));
     }
@@ -75,5 +78,4 @@ public class TestingUtils {
                 "Lord", "8"));
         library.add(new Movie("The Pink Panther", 1963, "Blake Edwards", "7"));
     }
-
 }

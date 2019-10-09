@@ -10,11 +10,6 @@ public class BibliotecaApp {
     private Library _library;
     private String _currentUser;
 
-    BibliotecaApp() {
-        _library = new Library();
-        _currentUser = null;
-    }
-
     BibliotecaApp(Library library) {
         _library = library;
         _currentUser = null;
