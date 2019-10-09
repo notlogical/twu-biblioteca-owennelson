@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class BibliotecaApp {
     private Library _library;
     private String _currentUser;
+    private Scanner _consoleIn;
 
     BibliotecaApp(Library library) {
         _library = library;
@@ -16,16 +17,16 @@ public class BibliotecaApp {
     }
 
     public void main(String[] args) {
-        Scanner consoleIn = new Scanner(System.in);
+        _consoleIn = new Scanner(System.in);
         ConsolePrinter.printWelcome();
         ConsolePrinter.printOptions();
-        readInput(consoleIn);
+        readInput()
     }
 
-    private void readInput(Scanner consoleIn) {
+    private void readInput() {
         boolean running = true;
         while (running) {
-            String input = consoleIn.nextLine();
+            String input = _consoleIn.nextLine();
             if (input.equals("List of books")) {
                 ConsolePrinter.printBookList(_library);
             } else if(input.equals("List of movies")) {
@@ -52,6 +53,30 @@ public class BibliotecaApp {
                 ConsolePrinter.printInvalidOptionWarning();
             }
         }
+    }
+
+    private void readGuestInput(String input, Boolean running) {
+        switch (input) {
+            case "List of books":
+                ConsolePrinter.printBookList(_library);
+                break;
+            case "List of movies":
+                ConsolePrinter.printMovieList(_library);
+                break;
+            case "Quit":
+                running = false;
+                break;
+            case "Log in":
+                attemptLogin(_consoleIn);
+                break;
+            case "Checkout":
+                // Need to figure out how to deal with starts with in switch.
+                // maybe first parse the input into a command object/interface, then use that as the input
+        }
+    }
+
+    private void readUserInput(Scanner input) {
+
     }
 
     private boolean isLoggedIn() {

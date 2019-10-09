@@ -35,8 +35,6 @@ public class BookTrackingTest {
 
     @Test
     public void testIfCheckoutLogged() {
-        //Log in, check out book. Check if book is logged out and if user matches
-        // Will need to set biblioteca up to be instantiated so that it persists after input
         theLibrary.checkoutBook("Clean Code", "123-4567");
         assertThat(theLibrary.getHolder("Clean Code"), is("123-4567"));
     }
