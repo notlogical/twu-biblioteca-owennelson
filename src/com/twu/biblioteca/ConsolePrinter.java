@@ -58,8 +58,8 @@ class ConsolePrinter {
         System.out.println(Utils.LOGIN_RETURN_MESSAGE);
     }
 
-    static void printBookList(List<Media> allMedia) {
-        for (Media book : allMedia) {
+    static void printBookList(Library library) {
+        for (Media book : library._allMedia) {
             if (book.isBook() && book.isAvailable()) {
                 printBook((Book) book);
             }
@@ -71,8 +71,8 @@ class ConsolePrinter {
                 .getAuthor()) + "|" + book.getYear());
     }
 
-    static void printMovieList(List<Media> allMedia) {
-        for (Media movie : allMedia) {
+    static void printMovieList(Library library) {
+        for (Media movie : library._allMedia) {
             if (movie.isMovie() && movie.isAvailable()) {
                 printMovie((Movie) movie);
             }

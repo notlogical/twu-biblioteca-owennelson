@@ -9,16 +9,20 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import static com.twu.biblioteca.TestingUtils.setInput;
+import static com.twu.biblioteca.TestingUtils.*;
 
 public class BookTrackingTest {
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
     private final PrintStream originalOutput = System.out;
     private final InputStream originalInput = System.in;
+    private Library theLibrary;
 
     @Before
     public void init() {
         System.setOut(new PrintStream(output));
+        theLibrary = new Library();
+        loadBooks(theLibrary);
+        loadMovies(theLibrary);
     }
 
     @After
