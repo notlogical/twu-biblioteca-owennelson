@@ -7,6 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.hamcrest.core.StringEndsWith.endsWith;
+import static com.twu.biblioteca.TestingUtils.setInput;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -51,9 +52,5 @@ public class LoginTests {
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.LOGIN_CHECKOUT_MESSAGE +
         "\n"));
-    }
-
-    private void setInput(String string) {
-        System.setIn(new ByteArrayInputStream(string.getBytes()));
     }
 }

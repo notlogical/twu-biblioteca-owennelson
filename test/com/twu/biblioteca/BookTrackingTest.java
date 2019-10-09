@@ -9,6 +9,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+import static com.twu.biblioteca.TestingUtils.setInput;
+
 public class BookTrackingTest {
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
     private final PrintStream originalOutput = System.out;
@@ -30,9 +32,5 @@ public class BookTrackingTest {
         //Log in, check out book. Check if book is logged out and if user matches
         // Will need to set biblioteca up to be instantiated so that it persists after input
         setInput(Utils.LOGIN);
-    }
-
-    private void setInput(String string) {
-        System.setIn(new ByteArrayInputStream(string.getBytes()));
     }
 }

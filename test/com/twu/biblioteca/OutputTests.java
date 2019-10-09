@@ -13,6 +13,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.InputStream;
 
+import static com.twu.biblioteca.TestingUtils.*;
+
 /** Test suite for outputs to console from BibliotecaApp. */
 
 public class OutputTests {
@@ -33,14 +35,14 @@ public class OutputTests {
 
     @Test
     public void testWelcomeMessage() {
-        setInput("Quit");
+        setInputAfterLogin("Quit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), startsWith(Utils.WELCOME_MESSAGE + "\n"));
     }
 
     @Test
     public void testOptionsDisplay() {
-        setInput("Quit");
+        setInputAfterLogin("Quit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.OPTION_LIST + "\n" +
                 Utils.LOGIN_SEQUENCE));
@@ -48,21 +50,21 @@ public class OutputTests {
 
     @Test
     public void testBookList() {
-        setInput("List of books\nQuit");
+        setInputAfterLogin("List of books\nQuit");
         BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.BOOK_LIST));
+        assertThat(output.toString(), endsWith(BOOK_LIST));
     }
 
     @Test
     public void testMovieList() {
-        setInput("List of movies\nQuit");
+        setInputAfterLogin("List of movies\nQuit");
         BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.MOVIE_LIST));
+        assertThat(output.toString(), endsWith(MOVIE_LIST));
     }
 
     @Test
     public void testInvalidOption() {
-        setInput("Eat book\nQuit");
+        setInputAfterLogin("Eat book\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.INVALID_OPTION_MESSAGE +
                 "\n"));
@@ -70,25 +72,23 @@ public class OutputTests {
 
     @Test
     public void testCheckoutBook() {
-        setInput("Checkout Clean Code\nList of books\nQuit");
+        setInputAfterLogin("Checkout Clean Code\nList of books\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils
-                .SUCCESSFUL_BOOK_CHECKOUT_MESSAGE + "\n" + Utils
-                .BOOK_LIST_AFTER_CHECKOUT));
+                .SUCCESSFUL_BOOK_CHECKOUT_MESSAGE + "\n" + BOOK_LIST_AFTER_CHECKOUT));
     }
 
     @Test
     public void testCheckoutMovie() {
-        setInput("Checkout Airplane!\nList of movies\nQuit");
+        setInputAfterLogin("Checkout Airplane!\nList of movies\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils
-                .SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE + "\n" + Utils
-                .MOVIE_LIST_AFTER_CHECKOUT));
+                .SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE + "\n" + MOVIE_LIST_AFTER_CHECKOUT));
     }
 
     @Test
     public void testFailedCheckout() {
-        setInput("Checkout The Cooking Gene\nQuit");
+        setInputAfterLogin("Checkout The Cooking Gene\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.FAILED_CHECKOUT_MESSAGE
                 + "\n"));
@@ -96,36 +96,27 @@ public class OutputTests {
 
     @Test
     public void testReturnBook() {
-        setInput("Checkout Sled Driver\nReturn Sled Driver\nList of " +
+        setInputAfterLogin("Checkout Sled Driver\nReturn Sled Driver\nList of " +
                 "books\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils
-                .SUCCESSFUL_BOOK_RETURN_MESSAGE + "\n" + Utils.BOOK_LIST));
+                .SUCCESSFUL_BOOK_RETURN_MESSAGE + "\n" + BOOK_LIST));
     }
 
     @Test
     public void testReturnMovie() {
-        setInput("Checkout The Pink Panther\nReturn The Pink Panther\nList of" +
+        setInputAfterLogin("Checkout The Pink Panther\nReturn The Pink Panther\nList of" +
                 " movies\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils
-                .SUCCESSFUL_MOVIE_RETURN_MESSAGE + "\n" + Utils.MOVIE_LIST));
+                .SUCCESSFUL_MOVIE_RETURN_MESSAGE + "\n" + MOVIE_LIST));
     }
 
     @Test
     public void testFailedReturn() {
-        setInput("Return Bosch Automotive Handbook\nQuit");
+        setInputAfterLogin("Return Bosch Automotive Handbook\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.FAILED_RETURN_MESSAGE +
                 "\n"));
-    }
-
-    private void setInput(String string) {
-        System.setIn(new ByteArrayInputStream(prependTextWithLogin(string)
-                .getBytes()));
-    }
-
-    private String prependTextWithLogin(String string) {
-        return Utils.LOGIN + string;
     }
 }
