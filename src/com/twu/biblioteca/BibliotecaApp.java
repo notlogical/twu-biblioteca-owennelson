@@ -38,7 +38,7 @@ public class BibliotecaApp {
                 logOut();
             } else if (input.startsWith("Checkout")) {
                 if (isLoggedIn()) {
-                    _library.checkoutBook(input.replaceFirst("Checkout ", ""));
+                    _library.checkoutBook(input.replaceFirst("Checkout ", ""), _currentUser);
                 } else {
                     ConsolePrinter.printLoginToCheckout();
                 }
@@ -56,7 +56,6 @@ public class BibliotecaApp {
 
     private boolean isLoggedIn() {
         return _currentUser != null;
-        // FIXME: 10/9/19 need to check login status before calling library.checkout/return
     }
 
     private void attemptLogin(Scanner consoleIn) {

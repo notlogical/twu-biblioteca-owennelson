@@ -14,10 +14,10 @@ public class Library {
         _allMedia.add(media);
     }
 
-    void checkoutBook(String bookToCheckout) {
+    void checkoutBook(String bookToCheckout, String user) {
         Media media = findMedia(bookToCheckout);
         if (media != null && media.isAvailable()) {
-            media.checkout();
+            media.checkout(user);
             ConsolePrinter.printCheckoutSuccess(media.getDescriptor());
         } else {
             ConsolePrinter.printCheckoutFailure();
@@ -27,11 +27,15 @@ public class Library {
     void returnBook(String bookToReturn) {
         Media media = findMedia(bookToReturn);
         if (media != null && media.isCheckedOut()) {
-            media.returnBook();
+            media.returnItem();
             ConsolePrinter.printReturnSuccess(media.getDescriptor());
         } else {
             ConsolePrinter.printReturnFailure();
         }
+    }
+
+    String getHolder(String item) {
+        return findMedia(item).getHolder();
     }
 
     private static Media findMedia(String mediaToFind) {
