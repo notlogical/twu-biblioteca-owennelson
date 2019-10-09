@@ -37,9 +37,17 @@ public class BibliotecaApp {
             } else if (input.equals("Log out")) {
                 logOut();
             } else if (input.startsWith("Checkout")) {
-                _library.checkoutBook(input.replaceFirst("Checkout ", ""));
+                if (isLoggedIn()) {
+                    _library.checkoutBook(input.replaceFirst("Checkout ", ""));
+                } else {
+                    ConsolePrinter.printLoginToCheckout();
+                }
             } else if (input.startsWith("Return")) {
-                _library.returnBook(input.replaceFirst("Return ", ""));
+                if (isLoggedIn()) {
+                    _library.returnBook(input.replaceFirst("Return ", ""));
+                } else {
+                    ConsolePrinter.printLoginToReturn();
+                }
             } else {
                 ConsolePrinter.printInvalidOptionWarning();
             }
