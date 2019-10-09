@@ -30,6 +30,10 @@ class ConsolePrinter {
         System.out.println(Utils.LOGIN_SUCCESS_MESSAGE);
     }
 
+    static void printLogOutMessage() {
+        System.out.println(Utils.LOGOUT_MESSAGE);
+    }
+
     static void printCheckoutSuccess(String descriptor) {
         System.out.println("Thank you! Enjoy the " + descriptor);
     }

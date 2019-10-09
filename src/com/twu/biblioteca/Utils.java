@@ -86,4 +86,6 @@ class Utils {
 
     static final String LOGIN_SEQUENCE = LOGIN_PROMPT + "\n" +
             PASSWORD_PROMPT + "\n" + LOGIN_SUCCESS_MESSAGE + "\n";
+
+    static final String LOGOUT_MESSAGE = "You have logged out of Biblioteca.";
 }

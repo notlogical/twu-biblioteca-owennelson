@@ -49,7 +49,8 @@ public class LoginTests {
     public void testLoginLogout() {
         setInput(Utils.LOGIN + "Log out\nCheckout Clean Code\nQuit");
         BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.LOGIN_CHECKOUT_MESSAGE));
+        assertThat(output.toString(), endsWith(Utils.LOGIN_CHECKOUT_MESSAGE +
+        "\n"));
     }
 
     private void setInput(String string) {

@@ -34,6 +34,8 @@ public class BibliotecaApp {
                 running = false;
             } else if (input.equals("Log in")) {
                 attemptLogin(consoleIn);
+            } else if (input.equals("Log out")) {
+                logOut();
             } else if (input.startsWith("Checkout")) {
                 checkoutBook(input.replaceFirst("Checkout ", ""));
             } else if (input.startsWith("Return")) {
@@ -117,5 +119,10 @@ public class BibliotecaApp {
             _currentUser = libraryNumber;
             ConsolePrinter.printLoginSuccess();
         }
+    }
+
+    private static void logOut() {
+        _currentUser = null;
+        ConsolePrinter.printLogOutMessage();
     }
 }
