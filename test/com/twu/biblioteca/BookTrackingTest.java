@@ -4,13 +4,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
 import static com.twu.biblioteca.TestingUtils.*;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertNull;
 import static org.hamcrest.core.Is.is;
 
 public class BookTrackingTest {
@@ -39,5 +39,12 @@ public class BookTrackingTest {
         // Will need to set biblioteca up to be instantiated so that it persists after input
         theLibrary.checkoutBook("Clean Code", "123-4567");
         assertThat(theLibrary.getHolder("Clean Code"), is("123-4567"));
+    }
+
+    @Test
+    public void testIfReturnLogged() {
+        theLibrary.checkoutBook("Sled Driver", "324-7676");
+        theLibrary.returnBook("Sled Driver");
+        assertNull(theLibrary.getHolder("Sled Driver"));
     }
 }
