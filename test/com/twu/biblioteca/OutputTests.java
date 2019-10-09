@@ -8,7 +8,6 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.hamcrest.core.StringEndsWith.endsWith;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.InputStream;
@@ -45,7 +44,7 @@ public class OutputTests {
         setInputAfterLogin("Quit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.OPTION_LIST + "\n" +
-                Utils.LOGIN_SEQUENCE));
+                LOGIN_SEQUENCE));
     }
 
     @Test

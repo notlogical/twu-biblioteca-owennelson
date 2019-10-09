@@ -14,6 +14,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.InputStream;
 
+import static com.twu.biblioteca.TestingUtils.LOGIN;
+
 public class LoginTests {
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
     private final PrintStream originalOutput = System.out;
@@ -40,7 +42,7 @@ public class LoginTests {
 
     @Test
     public void testLoggingIn() {
-        setInput(Utils.LOGIN + "Checkout Clean Code\nQuit");
+        setInput(LOGIN + "Checkout Clean Code\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.LOGIN_SUCCESS_MESSAGE +
                         "\n" + Utils.SUCCESSFUL_BOOK_CHECKOUT_MESSAGE + "\n"));
@@ -48,7 +50,7 @@ public class LoginTests {
 
     @Test
     public void testLoginLogout() {
-        setInput(Utils.LOGIN + "Log out\nCheckout Clean Code\nQuit");
+        setInput(LOGIN + "Log out\nCheckout Clean Code\nQuit");
         BibliotecaApp.main(null);
         assertThat(output.toString(), endsWith(Utils.LOGIN_CHECKOUT_MESSAGE +
         "\n"));
