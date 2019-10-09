@@ -45,6 +45,13 @@ public class LoginTests {
                         "\n" + Utils.SUCCESSFUL_BOOK_CHECKOUT_MESSAGE + "\n"));
     }
 
+    @Test
+    public void testLoginLogout() {
+        setInput(Utils.LOGIN + "Log out\nCheckout Clean Code\nQuit");
+        BibliotecaApp.main(null);
+        assertThat(output.toString(), endsWith(Utils.LOGIN_CHECKOUT_MESSAGE));
+    }
+
     private void setInput(String string) {
         System.setIn(new ByteArrayInputStream(string.getBytes()));
     }
