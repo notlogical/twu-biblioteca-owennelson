@@ -1,15 +1,12 @@
 package com.twu.biblioteca;
 
-import org.hamcrest.core.StringEndsWith;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class BibliotecaApp {
     private Library _library;
     private String _currentUser;
     private Scanner _consoleIn;
+    private boolean _running;
 
     BibliotecaApp(Library library) {
         _library = library;
@@ -20,63 +17,71 @@ public class BibliotecaApp {
         _consoleIn = new Scanner(System.in);
         ConsolePrinter.printWelcome();
         ConsolePrinter.printOptions();
-        readInput()
+        _running = true;
+        readInput();
     }
 
     private void readInput() {
-        boolean running = true;
-        while (running) {
+        while (_running) {
             String input = _consoleIn.nextLine();
-            if (input.equals("List of books")) {
-                ConsolePrinter.printBookList(_library);
-            } else if(input.equals("List of movies")) {
-                ConsolePrinter.printMovieList(_library);
-            } else if (input.equals("Quit")) {
-                running = false;
-            } else if (input.equals("Log in")) {
-                attemptLogin(consoleIn);
-            } else if (input.equals("Log out")) {
-                logOut();
-            } else if (input.startsWith("Checkout")) {
-                if (isLoggedIn()) {
-                    _library.checkoutBook(input.replaceFirst("Checkout ", ""), _currentUser);
-                } else {
-                    ConsolePrinter.printLoginToCheckout();
-                }
-            } else if (input.startsWith("Return")) {
-                if (isLoggedIn()) {
-                    _library.returnBook(input.replaceFirst("Return ", ""));
-                } else {
-                    ConsolePrinter.printLoginToReturn();
-                }
+            if (isLoggedIn()) {
+                processUserInput(new Command(input));
             } else {
-                ConsolePrinter.printInvalidOptionWarning();
+                processGuestInput(new Command(input));
             }
         }
     }
 
-    private void readGuestInput(String input, Boolean running) {
-        switch (input) {
-            case "List of books":
+    private void processGuestInput(Command command) {
+        switch (command.getType()) {
+            case LIST_BOOKS:
                 ConsolePrinter.printBookList(_library);
                 break;
-            case "List of movies":
+            case LIST_MOVIES:
                 ConsolePrinter.printMovieList(_library);
                 break;
-            case "Quit":
-                running = false;
+            case QUIT:
+                _running = false;
                 break;
-            case "Log in":
+            case LOG_IN:
                 attemptLogin(_consoleIn);
                 break;
-            case "Checkout":
-                // Need to figure out how to deal with starts with in switch.
-                // maybe first parse the input into a command object/interface, then use that as the input
+            case CHECKOUT:
+                ConsolePrinter.printLoginToCheckout();
+                break;
+            case RETURN:
+                ConsolePrinter.printLoginToReturn();
+                break;
+            default:
+                ConsolePrinter.printInvalidOptionWarning();
+                break;
         }
     }
 
-    private void readUserInput(Scanner input) {
-
+    private void processUserInput(Command command) {
+        switch (command.getType()) {
+            case LIST_BOOKS:
+                ConsolePrinter.printBookList(_library);
+                break;
+            case LIST_MOVIES:
+                ConsolePrinter.printMovieList(_library);
+                break;
+            case QUIT:
+                _running = false;
+                break;
+            case CHECKOUT:
+                _library.checkoutBook(command.getItem(), _currentUser);
+                break;
+            case RETURN:
+                _library.returnBook(command.getItem());
+                break;
+            case LOG_OUT:
+                logOut();
+                break;
+            default:
+                ConsolePrinter.printInvalidOptionWarning();
+                break;
+        }
     }
 
     private boolean isLoggedIn() {
