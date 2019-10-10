@@ -35,6 +35,10 @@ abstract class Media {
         return _quantityAvailable < _maxQuantity;
     }
 
+    boolean isCheckedOut(User user) {
+        return _holders.contains(user);
+    }
+
     void checkout(User user) {
         _quantityAvailable--;
         _holders.add(user);

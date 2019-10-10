@@ -27,7 +27,7 @@ public class Library {
 
     void returnBook(String bookToReturn, User user) {
         Media media = findMedia(bookToReturn);
-        if (media != null && media.isCheckedOut()) {
+        if (media != null && media.isCheckedOut(user)) {
             media.returnItem(user);
             ConsolePrinter.printReturnSuccess(media.getDescriptor());
         } else {
