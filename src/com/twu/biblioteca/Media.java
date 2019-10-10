@@ -1,19 +1,22 @@
 package com.twu.biblioteca;
 
+import java.util.HashSet;
+import java.util.Set;
+
 abstract class Media {
     private String _title;
     private int _year;
     private int _quantityAvailable;
     private int _maxQuantity;
     String _descriptor;
-    String _holder;
+    Set<User> _holders;
 
     Media(String title, int year) {
         _title = title;
         _year = year;
         _quantityAvailable = 1;
         _maxQuantity = 1;
-        _holder = null;
+        _holders = new HashSet<>();
     }
 
     String getTitle() {
@@ -32,18 +35,18 @@ abstract class Media {
         return _quantityAvailable < _maxQuantity;
     }
 
-    void checkout(String user) {
+    void checkout(User user) {
         _quantityAvailable--;
-        _holder = user;
+        _holders.add(user);
     }
 
-    void returnItem() {
+    void returnItem(User user) {
         _quantityAvailable++;
-        _holder = null;
+        _holders.remove(user);
     }
 
-    String getHolder() {
-        return _holder;
+    Set<User> getHolders() {
+        return _holders;
     }
 
     String getDescriptor() {

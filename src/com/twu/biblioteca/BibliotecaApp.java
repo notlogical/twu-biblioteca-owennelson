@@ -1,16 +1,27 @@
 package com.twu.biblioteca;
 
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
+
 import static com.twu.biblioteca.Utils.LIBRARY_NUMBER_PATTERN;
 
 public class BibliotecaApp {
     private Library _library;
-    private String _currentUser;
+    private Set<User> _users;
+    private User _currentUser;
     private Scanner _consoleIn;
     private boolean _running;
 
     BibliotecaApp(Library library) {
         _library = library;
+        _users = new HashSet<>();
+        _currentUser = null;
+    }
+
+    BibliotecaApp(Library library, Set<User> users) {
+        _library = library;
+        _users = users;
         _currentUser = null;
     }
 
@@ -74,7 +85,7 @@ public class BibliotecaApp {
                 _library.checkoutBook(command.getItem(), _currentUser);
                 break;
             case RETURN:
-                _library.returnBook(command.getItem());
+                _library.returnBook(command.getItem(), _currentUser);
                 break;
             case LOG_OUT:
                 logOut();
@@ -103,7 +114,7 @@ public class BibliotecaApp {
 
     private void checkPassword(String libraryNumber, String password) {
         if (true) {
-            _currentUser = libraryNumber;
+            _currentUser = findUser(libraryNumber);
             ConsolePrinter.printLoginSuccess();
         }
     }
@@ -111,5 +122,14 @@ public class BibliotecaApp {
     private void logOut() {
         _currentUser = null;
         ConsolePrinter.printLogOutMessage();
+    }
+
+    private User findUser(String libraryNumber) {
+        for (User user : _users) {
+            if (user.getLibraryNumber().equals(libraryNumber)) {
+                return user;
+            }
+        }
+        return null;
     }
 }
