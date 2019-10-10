@@ -7,6 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.hamcrest.core.StringEndsWith.endsWith;
+import static org.hamcrest.CoreMatchers.containsString;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -47,7 +48,7 @@ public class OutputTests {
     public void testOptionsDisplay() {
         setInputAfterLogin("Quit");
         new BibliotecaApp(theLibrary).main(null);
-        assertThat(output.toString(), endsWith(Utils.OPTION_LIST + "\n" +
+        assertThat(output.toString(), endsWith(Utils.GUEST_OPTION_LIST + "\n" +
                 LOGIN_SEQUENCE));
     }
 
@@ -69,7 +70,7 @@ public class OutputTests {
     public void testInvalidOption() {
         setInputAfterLogin("Eat book\nQuit");
         new BibliotecaApp(theLibrary).main(null);
-        assertThat(output.toString(), endsWith(Utils.INVALID_OPTION_MESSAGE +
+        assertThat(output.toString(), containsString(Utils.INVALID_OPTION_MESSAGE +
                 "\n"));
     }
 

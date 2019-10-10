@@ -10,12 +10,22 @@ class ConsolePrinter {
         System.out.println(Utils.WELCOME_MESSAGE);
     }
 
-    static void printOptions() {
-        System.out.println(Utils.OPTION_LIST);
+    static void printGuestOptions() {
+        System.out.println(Utils.GUEST_OPTION_LIST);
     }
 
-    static void printInvalidOptionWarning() {
+    static void printUserOptions() {
+        System.out.println(Utils.USER_OPTION_LIST);
+    }
+
+    static void printGuestInvalidOptionWarning() {
         System.out.println(Utils.INVALID_OPTION_MESSAGE);
+        printGuestOptions();
+    }
+
+    static void printUserInvalidOptionWarning() {
+        System.out.println(Utils.INVALID_OPTION_MESSAGE);
+        printUserOptions();
     }
 
     static void printLoginPrompt() {

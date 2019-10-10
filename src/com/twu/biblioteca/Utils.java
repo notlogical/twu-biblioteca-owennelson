@@ -6,12 +6,11 @@ class Utils {
     static final String WELCOME_MESSAGE = "Welcome to Biblioteca. Your " +
             "one-stop-shop for great book titles in Bangalore!";
 
-    static final String OPTION_LIST =
+    static final String GUEST_OPTION_LIST =
             "Options:\n" +
             "-List of books\n" +
             "-List of movies\n" +
-            "-Checkout [title]\n" +
-            "-Return [title]\n" +
+            "-Log in\n" +
             "-Quit";
 
     static final String USER_OPTION_LIST =
@@ -20,6 +19,7 @@ class Utils {
             "-List of movies\n" +
             "-Checkout [title]\n" +
             "-Return [title]\n" +
+            "-Log out\n" +
             "-Quit";
 
     static final String INVALID_OPTION_MESSAGE = "Please select a valid " +

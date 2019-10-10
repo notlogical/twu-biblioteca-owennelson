@@ -17,7 +17,7 @@ public class BibliotecaApp {
     public void main(String[] args) {
         _consoleIn = new Scanner(System.in);
         ConsolePrinter.printWelcome();
-        ConsolePrinter.printOptions();
+        ConsolePrinter.printGuestOptions();
         _running = true;
         readInput();
     }
@@ -54,7 +54,7 @@ public class BibliotecaApp {
                 ConsolePrinter.printLoginToReturn();
                 break;
             default:
-                ConsolePrinter.printInvalidOptionWarning();
+                ConsolePrinter.printGuestInvalidOptionWarning();
                 break;
         }
     }
@@ -80,7 +80,7 @@ public class BibliotecaApp {
                 logOut();
                 break;
             default:
-                ConsolePrinter.printInvalidOptionWarning();
+                ConsolePrinter.printUserInvalidOptionWarning();
                 break;
         }
     }
