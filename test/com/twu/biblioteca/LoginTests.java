@@ -6,10 +6,9 @@ import org.junit.Test;
 
 import static com.twu.biblioteca.TestingUtils.*;
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.core.StringStartsWith.startsWith;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.core.StringEndsWith.endsWith;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.InputStream;
@@ -56,5 +55,13 @@ public class LoginTests {
         new BibliotecaApp(theLibrary).main(null);
         assertThat(output.toString(), endsWith(Utils.LOGIN_CHECKOUT_MESSAGE +
         "\n"));
+    }
+
+    @Test
+    public void testInvalidLogin() {
+        setInput("Log in\nnot a library number\n\nCheckout Sled Driver\nQuit");
+        new BibliotecaApp(theLibrary).main(null);
+        assertThat(output.toString(), containsString(Utils.INVALID_LIBRARY_NUMBER));
+        assertThat(output.toString(), endsWith(Utils.LOGIN_CHECKOUT_MESSAGE));
     }
 }

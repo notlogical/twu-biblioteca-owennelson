@@ -44,6 +44,8 @@ class Utils {
     static final String LOGIN_PROMPT = "Please enter library number in the " +
             "format 000-0000";
 
+    static final String INVALID_LIBRARY_NUMBER = "Please enter a valid library number";
+
     static final String PASSWORD_PROMPT = "Please enter password";
 
     static final String LOGOUT_MESSAGE = "You have logged out of Biblioteca.";
