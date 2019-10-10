@@ -13,7 +13,8 @@ public class TestingUtils {
                 .getBytes()));
     }
 
-    static final User USER1 = new User("123-4567");
+    static final User USER1 = new User("123-4567", "Owen Nelson", "owen.nelson" +
+            "@thoughtworks.com", "+18001112222");
 
     static final User USER2 = new User("324-7676");
 

@@ -19,6 +19,7 @@ class Utils {
             "-List of movies\n" +
             "-Checkout [title]\n" +
             "-Return [title]\n" +
+            "-View my information\n" +
             "-Log out\n" +
             "-Quit";
 

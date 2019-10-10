@@ -43,6 +43,10 @@ class ConsolePrinter {
         System.out.println(Utils.LOGIN_SUCCESS_MESSAGE);
     }
 
+    static void printUserInformation(User user) {
+        System.out.println(user.getInformation());
+    }
+
     static void printLogOutMessage() {
         System.out.println(Utils.LOGOUT_MESSAGE);
     }

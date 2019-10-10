@@ -28,6 +28,8 @@ class Command {
         } else if (input.startsWith("Return")) {
             _type = Type.RETURN;
             _item = input.replace("Return ", "");
+        } else if (input.startsWith("View my information")) {
+            _type = Type.VIEW_INFO;
         } else if (input.startsWith("Quit")) {
             _type = Type.QUIT;
         } else {
@@ -40,6 +42,6 @@ class Command {
     }
 
     enum Type {
-        LIST_BOOKS, LIST_MOVIES, LOG_IN, LOG_OUT, CHECKOUT, RETURN, QUIT, INVALID;
+        LIST_BOOKS, LIST_MOVIES, LOG_IN, LOG_OUT, CHECKOUT, VIEW_INFO, RETURN, QUIT, INVALID;
     }
 }

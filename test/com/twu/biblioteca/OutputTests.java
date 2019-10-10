@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static com.twu.biblioteca.TestingUtils.*;
+import static org.junit.Assert.assertTrue;
 
 /** Test suite for outputs to console from new BibliotecaApp(theLibrary). */
 
@@ -126,5 +127,12 @@ public class OutputTests {
         new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils.FAILED_RETURN_MESSAGE +
                 "\n"));
+    }
+
+    @Test
+    public void testViewUserInfo() {
+        setInputAfterLogin("View my information\nQuit");
+        new BibliotecaApp(theLibrary, users).main(null);
+        assertThat(output.toString(), endsWith(USER1.getInformation() + "\n"));
     }
 }

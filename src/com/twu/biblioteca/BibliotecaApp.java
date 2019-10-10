@@ -90,6 +90,9 @@ public class BibliotecaApp {
             case LOG_OUT:
                 logOut();
                 break;
+            case VIEW_INFO:
+                ConsolePrinter.printUserInformation(_currentUser);
+                break;
             default:
                 ConsolePrinter.printUserInvalidOptionWarning();
                 break;
