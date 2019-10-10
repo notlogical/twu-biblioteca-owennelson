@@ -94,6 +94,7 @@ public class BibliotecaApp {
         ConsolePrinter.printPasswordPrompt();
         String password = consoleIn.nextLine();
         checkPassword(libraryNumber, password);
+        // need to ensure valid library ID
     }
 
     private void checkPassword(String libraryNumber, String password) {

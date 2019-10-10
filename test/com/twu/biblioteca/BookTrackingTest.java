@@ -21,17 +21,17 @@ public class BookTrackingTest {
 
     @Before
     public void init() {
-        System.setOut(new PrintStream(output));
+        //System.setOut(new PrintStream(output));
         theLibrary = new Library();
         loadBooks(theLibrary);
         loadMovies(theLibrary);
     }
 
-    @After
+    /*@After
     public void shutdown() {
         System.setOut(originalOutput);
         System.setIn(originalInput);
-    }
+    }*/
 
     @Test
     public void testIfCheckoutLogged() {

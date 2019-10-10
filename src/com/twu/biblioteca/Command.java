@@ -13,13 +13,26 @@ class Command {
     }
 
     private void parseInput(String input) {
-        // use matchers to assign type and then assign item if present
         _item = null;
         if (input.startsWith("List of books")) {
             _type = Type.LIST_BOOKS;
         } else if (input.startsWith("List of movies")) {
             _type = Type.LIST_MOVIES;
-        } else if
+        } else if (input.startsWith("Log in")) {
+            _type = Type.LOG_IN;
+        } else if (input.startsWith("Log out")) {
+            _type = Type.LOG_OUT;
+        } else if (input.startsWith("Checkout")) {
+            _type = Type.CHECKOUT;
+            _item = input.replace("Checkout ", "");
+        } else if (input.startsWith("Return")) {
+            _type = Type.RETURN;
+            _item = input.replace("Return ", "");
+        } else if (input.startsWith("Quit")) {
+            _type = Type.QUIT;
+        } else {
+            _type = Type.INVALID;
+        }
     }
 
     Type getType() {
