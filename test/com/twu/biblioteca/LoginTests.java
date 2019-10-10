@@ -62,6 +62,6 @@ public class LoginTests {
         setInput("Log in\nnot a library number\n\nCheckout Sled Driver\nQuit");
         new BibliotecaApp(theLibrary).main(null);
         assertThat(output.toString(), containsString(Utils.INVALID_LIBRARY_NUMBER));
-        assertThat(output.toString(), endsWith(Utils.LOGIN_CHECKOUT_MESSAGE));
+        assertThat(output.toString(), endsWith(Utils.LOGIN_CHECKOUT_MESSAGE + "\n"));
     }
 }

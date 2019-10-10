@@ -1,11 +1,20 @@
 package com.twu.biblioteca;
 
-class Utils {
+import java.util.regex.Pattern;
 
+class Utils {
     static final String WELCOME_MESSAGE = "Welcome to Biblioteca. Your " +
             "one-stop-shop for great book titles in Bangalore!";
 
     static final String OPTION_LIST =
+            "Options:\n" +
+            "-List of books\n" +
+            "-List of movies\n" +
+            "-Checkout [title]\n" +
+            "-Return [title]\n" +
+            "-Quit";
+
+    static final String USER_OPTION_LIST =
             "Options:\n" +
             "-List of books\n" +
             "-List of movies\n" +
@@ -43,6 +52,8 @@ class Utils {
 
     static final String LOGIN_PROMPT = "Please enter library number in the " +
             "format 000-0000";
+
+    static final Pattern LIBRARY_NUMBER_PATTERN = Pattern.compile("\\d{3}-\\d{4}");
 
     static final String INVALID_LIBRARY_NUMBER = "Please enter a valid library number";
 

@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import java.util.Scanner;
+import static com.twu.biblioteca.Utils.LIBRARY_NUMBER_PATTERN;
 
 public class BibliotecaApp {
     private Library _library;
@@ -91,10 +92,13 @@ public class BibliotecaApp {
     private void attemptLogin(Scanner consoleIn) {
         ConsolePrinter.printLoginPrompt();
         String libraryNumber = consoleIn.nextLine();
-        ConsolePrinter.printPasswordPrompt();
-        String password = consoleIn.nextLine();
-        checkPassword(libraryNumber, password);
-        // need to ensure valid library ID
+        if (LIBRARY_NUMBER_PATTERN.matcher(libraryNumber).matches()) {
+            ConsolePrinter.printPasswordPrompt();
+            String password = consoleIn.nextLine();
+            checkPassword(libraryNumber, password);
+        } else {
+            ConsolePrinter.printInvalidLibraryNumber();
+        }
     }
 
     private void checkPassword(String libraryNumber, String password) {

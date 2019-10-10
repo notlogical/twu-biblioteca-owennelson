@@ -22,6 +22,9 @@ class ConsolePrinter {
         System.out.println(Utils.LOGIN_PROMPT);
     }
 
+    static void printInvalidLibraryNumber() {
+        System.out.println(Utils.INVALID_LIBRARY_NUMBER);
+    }
     static void printPasswordPrompt() {
         System.out.println(Utils.PASSWORD_PROMPT);
     }
