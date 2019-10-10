@@ -12,6 +12,8 @@ import static org.hamcrest.CoreMatchers.containsString;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.InputStream;
+import java.util.HashSet;
+import java.util.Set;
 
 import static com.twu.biblioteca.TestingUtils.*;
 
@@ -22,6 +24,7 @@ public class OutputTests {
     private final PrintStream originalOutput = System.out;
     private final InputStream originalInput = System.in;
     private Library theLibrary;
+    private Set<User> users = new HashSet<>();
 
     @Before
     public void init() {
@@ -29,6 +32,7 @@ public class OutputTests {
         theLibrary = new Library();
         loadBooks(theLibrary);
         loadMovies(theLibrary);
+        loadUsers(users);
     }
 
     @After
@@ -77,7 +81,7 @@ public class OutputTests {
     @Test
     public void testCheckoutBook() {
         setInputAfterLogin("Checkout Clean Code\nList of books\nQuit");
-        new BibliotecaApp(theLibrary).main(null);
+        new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils
                 .SUCCESSFUL_BOOK_CHECKOUT_MESSAGE + "\n" + BOOK_LIST_AFTER_CHECKOUT));
     }
@@ -85,7 +89,7 @@ public class OutputTests {
     @Test
     public void testCheckoutMovie() {
         setInputAfterLogin("Checkout Airplane!\nList of movies\nQuit");
-        new BibliotecaApp(theLibrary).main(null);
+        new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils
                 .SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE + "\n" + MOVIE_LIST_AFTER_CHECKOUT));
     }
@@ -93,7 +97,7 @@ public class OutputTests {
     @Test
     public void testFailedCheckout() {
         setInputAfterLogin("Checkout The Cooking Gene\nQuit");
-        new BibliotecaApp(theLibrary).main(null);
+        new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils.FAILED_CHECKOUT_MESSAGE
                 + "\n"));
     }
@@ -102,7 +106,7 @@ public class OutputTests {
     public void testReturnBook() {
         setInputAfterLogin("Checkout Sled Driver\nReturn Sled Driver\nList of " +
                 "books\nQuit");
-        new BibliotecaApp(theLibrary).main(null);
+        new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils
                 .SUCCESSFUL_BOOK_RETURN_MESSAGE + "\n" + BOOK_LIST));
     }
@@ -111,7 +115,7 @@ public class OutputTests {
     public void testReturnMovie() {
         setInputAfterLogin("Checkout The Pink Panther\nReturn The Pink Panther\nList of" +
                 " movies\nQuit");
-        new BibliotecaApp(theLibrary).main(null);
+        new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils
                 .SUCCESSFUL_MOVIE_RETURN_MESSAGE + "\n" + MOVIE_LIST));
     }
@@ -119,7 +123,7 @@ public class OutputTests {
     @Test
     public void testFailedReturn() {
         setInputAfterLogin("Return Bosch Automotive Handbook\nQuit");
-        new BibliotecaApp(theLibrary).main(null);
+        new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils.FAILED_RETURN_MESSAGE +
                 "\n"));
     }

@@ -6,8 +6,8 @@ public class User {
     private String _email;
     private String _phoneNumber;
 
-    User(String _libraryNumber) {
-        _libraryNumber = _libraryNumber;
+    User(String libraryNumber) {
+        _libraryNumber = libraryNumber;
         _name = "";
         _email = "";
         _phoneNumber = "";

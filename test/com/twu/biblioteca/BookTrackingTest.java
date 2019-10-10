@@ -10,8 +10,6 @@ import static org.junit.Assert.*;
 
 public class BookTrackingTest {
     private Library theLibrary;
-    private User user1 = new User("123-4567");
-    private User user2 = new User("324-7676");
 
     @Before
     public void init() {
@@ -22,14 +20,14 @@ public class BookTrackingTest {
 
     @Test
     public void testIfCheckoutLogged() {
-        theLibrary.checkoutBook("Clean Code", user1);
-        assertTrue(theLibrary.getHolders("Clean Code").contains(user1));
+        theLibrary.checkoutBook("Clean Code", USER1);
+        assertTrue(theLibrary.getHolders("Clean Code").contains(USER1));
     }
 
     @Test
     public void testIfReturnLogged() {
-        theLibrary.checkoutBook("Sled Driver", user2);
-        theLibrary.returnBook("Sled Driver", user2);
+        theLibrary.checkoutBook("Sled Driver", USER2);
+        theLibrary.returnBook("Sled Driver", USER2);
         assertTrue(theLibrary.getHolders("Sled Driver").isEmpty());
     }
 }

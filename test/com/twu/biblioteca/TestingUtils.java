@@ -1,11 +1,9 @@
 package com.twu.biblioteca;
 
 import java.io.ByteArrayInputStream;
+import java.util.Set;
 
 public class TestingUtils {
-    TestingUtils() {
-
-    }
     static void setInput(String string) {
         System.setIn(new ByteArrayInputStream(string.getBytes()));
     }
@@ -14,6 +12,10 @@ public class TestingUtils {
         System.setIn(new ByteArrayInputStream(prependTextWithLogin(string)
                 .getBytes()));
     }
+
+    static final User USER1 = new User("123-4567");
+
+    static final User USER2 = new User("324-7676");
 
     private static String prependTextWithLogin(String string) {
         return LOGIN + string;
@@ -77,5 +79,10 @@ public class TestingUtils {
         library.add(new Movie("The Lego Movie", 2014, "Chris Miller & Phil " +
                 "Lord", "8"));
         library.add(new Movie("The Pink Panther", 1963, "Blake Edwards", "7"));
+    }
+
+    static void loadUsers(Set<User> users) {
+        users.add(USER1);
+        users.add(USER2);
     }
 }

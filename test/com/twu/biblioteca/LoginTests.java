@@ -12,12 +12,15 @@ import static org.hamcrest.core.StringEndsWith.endsWith;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.InputStream;
+import java.util.HashSet;
+import java.util.Set;
 
 public class LoginTests {
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
     private final PrintStream originalOutput = System.out;
     private final InputStream originalInput = System.in;
     private Library theLibrary;
+    private Set<User> users = new HashSet<>();
 
     @Before
     public void init() {
@@ -25,6 +28,7 @@ public class LoginTests {
         theLibrary = new Library();
         loadBooks(theLibrary);
         loadMovies(theLibrary);
+        users.add(USER1);
     }
 
     @After
@@ -44,7 +48,7 @@ public class LoginTests {
     @Test
     public void testLoggingIn() {
         setInput(LOGIN + "Checkout Clean Code\nQuit");
-        new BibliotecaApp(theLibrary).main(null);
+        new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils.LOGIN_SUCCESS_MESSAGE +
                         "\n" + Utils.SUCCESSFUL_BOOK_CHECKOUT_MESSAGE + "\n"));
     }
