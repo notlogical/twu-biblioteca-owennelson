@@ -133,6 +133,8 @@ public class BibliotecaApp {
                 return user;
             }
         }
-        return null;
+        User newUser = new User (libraryNumber);
+        _users.add(newUser);
+        return newUser;
     }
 }

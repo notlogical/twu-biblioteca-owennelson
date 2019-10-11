@@ -8,9 +8,9 @@ public class User {
 
     User(String libraryNumber) {
         _libraryNumber = libraryNumber;
-        _name = "";
-        _email = "";
-        _phoneNumber = "";
+        _name = "No name on file";
+        _email = "No email on file";
+        _phoneNumber = "No phone number on file";
     }
 
     User(String libraryNumber, String name, String email, String phoneNumber) {
