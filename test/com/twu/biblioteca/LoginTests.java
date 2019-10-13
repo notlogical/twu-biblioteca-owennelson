@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.hamcrest.core.StringEndsWith.endsWith;
 
 import java.io.ByteArrayInputStream;
