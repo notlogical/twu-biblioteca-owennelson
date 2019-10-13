@@ -1,128 +1,140 @@
 package com.twu.biblioteca;
 
-import org.hamcrest.core.StringEndsWith;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
+
+import static com.twu.biblioteca.Utils.LIBRARY_NUMBER_PATTERN;
 
 public class BibliotecaApp {
+    private Library _library;
+    private Set<User> _users;
+    private User _currentUser;
+    private Scanner _consoleIn;
+    private boolean _running;
 
-    private static List<Media> _allMedia;
-    private static String _currentUser;
-
-    public static void main(String[] args) {
-        Scanner consoleIn = new Scanner(System.in);
-        _allMedia = new ArrayList<>();
+    BibliotecaApp(Library library) {
+        _library = library;
+        _users = new HashSet<>();
         _currentUser = null;
-        loadBooks();
-        loadMovies();
+    }
+
+    BibliotecaApp(Library library, Set<User> users) {
+        _library = library;
+        _users = users;
+        _currentUser = null;
+    }
+
+    public void main(String[] args) {
+        _consoleIn = new Scanner(System.in);
         ConsolePrinter.printWelcome();
-        ConsolePrinter.printOptions();
-        readInput(consoleIn);
+        ConsolePrinter.printGuestOptions();
+        _running = true;
+        readInput();
     }
 
-    private static void readInput(Scanner consoleIn) {
-        boolean running = true;
-        while (running) {
-            String input = consoleIn.nextLine();
-            if (input.equals("List of books")) {
-                ConsolePrinter.printBookList(_allMedia);
-            } else if(input.equals("List of movies")) {
-                ConsolePrinter.printMovieList(_allMedia);
-            } else if (input.equals("Quit")) {
-                running = false;
-            } else if (input.equals("Log in")) {
-                attemptLogin(consoleIn);
-            } else if (input.equals("Log out")) {
+    private void readInput() {
+        while (_running) {
+            String input = _consoleIn.nextLine();
+            if (isLoggedIn()) {
+                processUserInput(new Command(input));
+            } else {
+                processGuestInput(new Command(input));
+            }
+        }
+    }
+
+    private void processGuestInput(Command command) {
+        switch (command.getType()) {
+            case LIST_BOOKS:
+                ConsolePrinter.printBookList(_library);
+                break;
+            case LIST_MOVIES:
+                ConsolePrinter.printMovieList(_library);
+                break;
+            case QUIT:
+                _running = false;
+                break;
+            case LOG_IN:
+                attemptLogin(_consoleIn);
+                break;
+            case CHECKOUT:
+                ConsolePrinter.printLoginToCheckout();
+                break;
+            case RETURN:
+                ConsolePrinter.printLoginToReturn();
+                break;
+            default:
+                ConsolePrinter.printGuestInvalidOptionWarning();
+                break;
+        }
+    }
+
+    private void processUserInput(Command command) {
+        switch (command.getType()) {
+            case LIST_BOOKS:
+                ConsolePrinter.printBookList(_library);
+                break;
+            case LIST_MOVIES:
+                ConsolePrinter.printMovieList(_library);
+                break;
+            case QUIT:
+                _running = false;
+                break;
+            case CHECKOUT:
+                _library.checkoutBook(command.getItem(), _currentUser);
+                break;
+            case RETURN:
+                _library.returnBook(command.getItem(), _currentUser);
+                break;
+            case LOG_OUT:
                 logOut();
-            } else if (input.startsWith("Checkout")) {
-                checkoutBook(input.replaceFirst("Checkout ", ""));
-            } else if (input.startsWith("Return")) {
-                returnBook(input.replaceFirst("Return ", ""));
-            } else {
-                ConsolePrinter.printInvalidOptionWarning();
-            }
+                break;
+            case VIEW_INFO:
+                ConsolePrinter.printUserInformation(_currentUser);
+                break;
+            default:
+                ConsolePrinter.printUserInvalidOptionWarning();
+                break;
         }
     }
 
-    private static void loadBooks() {
-        _allMedia.add(new Book("Bosch Automotive Handbook", "Robert Bosch GmbH",
-                1932));
-        _allMedia.add(new Book("Clean Code", "Robert C. Martin", 2008));
-        _allMedia.add(new Book("Modern Global Seismology", "Thorne Lay & Terry " +
-                "C. Wallace", 1995));
-        _allMedia.add(new Book("One Hundred Years of Solitude", "Gabriel Garcia " +
-                "Marquez", 1967));
-        _allMedia.add(new Book("Sled Driver", "Brian Shul", 1991));
-    }
-
-    private static void loadMovies() {
-        _allMedia.add(new Movie("Airplane!", 1980, "David Zucker, Jim Abrahams," +
-                " & Jerry Zucker", "8"));
-        _allMedia.add(new Movie("The Lego Movie", 2014, "Chris Miller & Phil " +
-                "Lord", "8"));
-        _allMedia.add(new Movie("The Pink Panther", 1963, "Blake Edwards", "7"));
-    }
-
-    private static void checkoutBook(String bookToCheckout) {
-        if (isLoggedIn()) {
-            Media media = findMedia(bookToCheckout);
-            if (media != null && media.isAvailable()) {
-                media.checkout();
-                ConsolePrinter.printCheckoutSuccess(media.getDescriptor());
-            } else {
-                ConsolePrinter.printCheckoutFailure();
-            }
-        } else {
-            ConsolePrinter.printLoginToCheckout();
-        }
-    }
-
-    private static void returnBook(String bookToReturn) {
-        if (isLoggedIn()) {
-            Media media = findMedia(bookToReturn);
-            if (media != null && media.isCheckedOut()) {
-                media.returnBook();
-                ConsolePrinter.printReturnSuccess(media.getDescriptor());
-            } else {
-                ConsolePrinter.printReturnFailure();
-            }
-        } else {
-            ConsolePrinter.printLoginToReturn();
-        }
-    }
-
-    private static Media findMedia(String mediaToFind) {
-        for (Media media : _allMedia) {
-            if (media.getTitle().equals(mediaToFind)) {
-                return media;
-            }
-        }
-        return null;
-    }
-
-    private static boolean isLoggedIn() {
+    private boolean isLoggedIn() {
         return _currentUser != null;
     }
 
-    private static void attemptLogin(Scanner consoleIn) {
+    private void attemptLogin(Scanner consoleIn) {
         ConsolePrinter.printLoginPrompt();
         String libraryNumber = consoleIn.nextLine();
-        ConsolePrinter.printPasswordPrompt();
-        String password = consoleIn.nextLine();
-        checkPassword(libraryNumber, password);
+        if (LIBRARY_NUMBER_PATTERN.matcher(libraryNumber).matches()) {
+            ConsolePrinter.printPasswordPrompt();
+            String password = consoleIn.nextLine();
+            checkPassword(libraryNumber, password);
+        } else {
+            ConsolePrinter.printInvalidLibraryNumber();
+        }
     }
 
-    private static void checkPassword(String libraryNumber, String password) {
+    private void checkPassword(String libraryNumber, String password) {
         if (true) {
-            _currentUser = libraryNumber;
+            _currentUser = findUser(libraryNumber);
             ConsolePrinter.printLoginSuccess();
         }
     }
 
-    private static void logOut() {
+    private void logOut() {
         _currentUser = null;
         ConsolePrinter.printLogOutMessage();
+    }
+
+    private User findUser(String libraryNumber) {
+        for (User user : _users) {
+            if (user.getLibraryNumber().equals(libraryNumber)) {
+                return user;
+            }
+        }
+        User newUser = new User (libraryNumber);
+        _users.add(newUser);
+        return newUser;
     }
 }

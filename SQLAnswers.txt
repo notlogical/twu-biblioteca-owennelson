@@ -1,0 +1,103 @@
+Question 1:
+Query:
+#!/usr/bin/sqlite3
+
+SELECT member.name 
+FROM member, book, checkout_item 
+WHERE book.title = "The Hobbit"
+AND checkout_item.book_id = book.id
+AND member.id = checkout_item.member_id;
+
+Result:
+Anand Beck
+
+
+Question 2:
+Query:
+#!/usr/bin/sqlite3
+
+SELECT COUNT(*)
+FROM member
+WHERE member.id NOT IN (
+	SELECT checkout_item.member_id
+	FROM checkout_item
+);
+
+Result:
+37
+
+
+Question 3:
+Query:
+#!/usr/bin/sqlite3
+
+SELECT title
+FROM book
+WHERE book.title NOT IN (
+	SELECT book.title 
+	FROM checkout_item, book
+	WHERE book.id = checkout_item.book_id
+);
+
+SELECT title
+FROM movie
+WHERE movie.title NOT IN (
+	SELECT movie.title
+	FROM checkout_item, movie
+	WHERE movie.id = checkout_item.movie_id
+);
+
+Result:
+Fellowship of the Ring
+1984
+Tom Sawyer
+Catcher in the Rye
+To Kill a Mockingbird
+Domain Driven Design
+Thin Red Line
+Crouching Tiger, Hidden Dragon
+Lawrence of Arabia
+Office Space
+
+
+Question 4:
+Query:
+#!/usr/bin/sqlite3
+
+INSERT INTO book (id, title)
+VALUES (11, "The Pragmatic Programmer");
+
+INSERT INTO member (id, name)
+VALUES (43, "Owen Nelson");
+
+INSERT INTO checkout_item (member_id, book_id)
+VALUES (43, 11);
+
+SELECT member.name
+FROM member, book, checkout_item
+WHERE book.title = "The Pragmatic Programmer"
+AND checkout_item.book_id = book.id
+AND member.id = checkout_item.member_id;
+
+Result:
+Owen Nelson
+
+
+Question 5:
+Query:
+#!/usr/bin/sqlite3
+
+SELECT member.name
+FROM member
+WHERE member.id IN (
+	SELECT checkout_item.member_id
+	FROM checkout_item
+	GROUP BY checkout_item.member_id
+	HAVING COUNT(*) > 1
+);
+
+Result:
+Anand Beck
+Frank Smith
+
+

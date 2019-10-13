@@ -7,22 +7,33 @@ import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.hamcrest.core.StringEndsWith.endsWith;
+import static org.hamcrest.CoreMatchers.containsString;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.InputStream;
+import java.util.HashSet;
+import java.util.Set;
 
-/** Test suite for outputs to console from BibliotecaApp. */
+import static com.twu.biblioteca.TestingUtils.*;
+import static org.junit.Assert.assertTrue;
+
+/** Test suite for outputs to console from new BibliotecaApp(theLibrary). */
 
 public class OutputTests {
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
     private final PrintStream originalOutput = System.out;
     private final InputStream originalInput = System.in;
+    private Library theLibrary;
+    private Set<User> users = new HashSet<>();
 
     @Before
     public void init() {
         System.setOut(new PrintStream(output));
+        theLibrary = new Library();
+        loadBooks(theLibrary);
+        loadMovies(theLibrary);
+        loadUsers(users);
     }
 
     @After
@@ -33,99 +44,95 @@ public class OutputTests {
 
     @Test
     public void testWelcomeMessage() {
-        setInput("Quit");
-        BibliotecaApp.main(null);
+        setInputAfterLogin("Quit");
+        new BibliotecaApp(theLibrary).main(null);
         assertThat(output.toString(), startsWith(Utils.WELCOME_MESSAGE + "\n"));
     }
 
     @Test
     public void testOptionsDisplay() {
-        setInput("Quit");
-        BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.OPTION_LIST + "\n" +
-                Utils.LOGIN_SEQUENCE));
+        setInputAfterLogin("Quit");
+        new BibliotecaApp(theLibrary).main(null);
+        assertThat(output.toString(), endsWith(Utils.GUEST_OPTION_LIST + "\n" +
+                LOGIN_SEQUENCE));
     }
 
     @Test
     public void testBookList() {
-        setInput("List of books\nQuit");
-        BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.BOOK_LIST));
+        setInputAfterLogin("List of books\nQuit");
+        new BibliotecaApp(theLibrary).main(null);
+        assertThat(output.toString(), endsWith(BOOK_LIST));
     }
 
     @Test
     public void testMovieList() {
-        setInput("List of movies\nQuit");
-        BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.MOVIE_LIST));
+        setInputAfterLogin("List of movies\nQuit");
+        new BibliotecaApp(theLibrary).main(null);
+        assertThat(output.toString(), endsWith(MOVIE_LIST));
     }
 
     @Test
     public void testInvalidOption() {
-        setInput("Eat book\nQuit");
-        BibliotecaApp.main(null);
-        assertThat(output.toString(), endsWith(Utils.INVALID_OPTION_MESSAGE +
+        setInputAfterLogin("Eat book\nQuit");
+        new BibliotecaApp(theLibrary).main(null);
+        assertThat(output.toString(), containsString(Utils.INVALID_OPTION_MESSAGE +
                 "\n"));
     }
 
     @Test
     public void testCheckoutBook() {
-        setInput("Checkout Clean Code\nList of books\nQuit");
-        BibliotecaApp.main(null);
+        setInputAfterLogin("Checkout Clean Code\nList of books\nQuit");
+        new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils
-                .SUCCESSFUL_BOOK_CHECKOUT_MESSAGE + "\n" + Utils
-                .BOOK_LIST_AFTER_CHECKOUT));
+                .SUCCESSFUL_BOOK_CHECKOUT_MESSAGE + "\n" + BOOK_LIST_AFTER_CHECKOUT));
     }
 
     @Test
     public void testCheckoutMovie() {
-        setInput("Checkout Airplane!\nList of movies\nQuit");
-        BibliotecaApp.main(null);
+        setInputAfterLogin("Checkout Airplane!\nList of movies\nQuit");
+        new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils
-                .SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE + "\n" + Utils
-                .MOVIE_LIST_AFTER_CHECKOUT));
+                .SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE + "\n" + MOVIE_LIST_AFTER_CHECKOUT));
     }
 
     @Test
     public void testFailedCheckout() {
-        setInput("Checkout The Cooking Gene\nQuit");
-        BibliotecaApp.main(null);
+        setInputAfterLogin("Checkout The Cooking Gene\nQuit");
+        new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils.FAILED_CHECKOUT_MESSAGE
                 + "\n"));
     }
 
     @Test
     public void testReturnBook() {
-        setInput("Checkout Sled Driver\nReturn Sled Driver\nList of " +
+        setInputAfterLogin("Checkout Sled Driver\nReturn Sled Driver\nList of " +
                 "books\nQuit");
-        BibliotecaApp.main(null);
+        new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils
-                .SUCCESSFUL_BOOK_RETURN_MESSAGE + "\n" + Utils.BOOK_LIST));
+                .SUCCESSFUL_BOOK_RETURN_MESSAGE + "\n" + BOOK_LIST));
     }
 
     @Test
     public void testReturnMovie() {
-        setInput("Checkout The Pink Panther\nReturn The Pink Panther\nList of" +
+        setInputAfterLogin("Checkout The Pink Panther\nReturn The Pink Panther\nList of" +
                 " movies\nQuit");
-        BibliotecaApp.main(null);
+        new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils
-                .SUCCESSFUL_MOVIE_RETURN_MESSAGE + "\n" + Utils.MOVIE_LIST));
+                .SUCCESSFUL_MOVIE_RETURN_MESSAGE + "\n" + MOVIE_LIST));
     }
 
     @Test
     public void testFailedReturn() {
-        setInput("Return Bosch Automotive Handbook\nQuit");
-        BibliotecaApp.main(null);
+        setInputAfterLogin("Return Bosch Automotive Handbook\nQuit");
+        new BibliotecaApp(theLibrary, users).main(null);
         assertThat(output.toString(), endsWith(Utils.FAILED_RETURN_MESSAGE +
                 "\n"));
     }
 
-    private void setInput(String string) {
-        System.setIn(new ByteArrayInputStream(prependTextWithLogin(string)
-                .getBytes()));
-    }
-
-    private String prependTextWithLogin(String string) {
-        return Utils.LOGIN + string;
+    @Test
+    public void testViewUserInfo() {
+        setInputAfterLogin("View my information\nQuit");
+        new BibliotecaApp(theLibrary, users).main(null);
+        assertThat(output.toString(), endsWith(USER1.getInformation() + "\n"));
     }
 }

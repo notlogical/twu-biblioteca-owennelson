@@ -10,24 +10,41 @@ class ConsolePrinter {
         System.out.println(Utils.WELCOME_MESSAGE);
     }
 
-    static void printOptions() {
-        System.out.println(Utils.OPTION_LIST);
+    static void printGuestOptions() {
+        System.out.println(Utils.GUEST_OPTION_LIST);
     }
 
-    static void printInvalidOptionWarning() {
+    static void printUserOptions() {
+        System.out.println(Utils.USER_OPTION_LIST);
+    }
+
+    static void printGuestInvalidOptionWarning() {
         System.out.println(Utils.INVALID_OPTION_MESSAGE);
+        printGuestOptions();
+    }
+
+    static void printUserInvalidOptionWarning() {
+        System.out.println(Utils.INVALID_OPTION_MESSAGE);
+        printUserOptions();
     }
 
     static void printLoginPrompt() {
         System.out.println(Utils.LOGIN_PROMPT);
     }
 
+    static void printInvalidLibraryNumber() {
+        System.out.println(Utils.INVALID_LIBRARY_NUMBER);
+    }
     static void printPasswordPrompt() {
         System.out.println(Utils.PASSWORD_PROMPT);
     }
 
     static void printLoginSuccess() {
         System.out.println(Utils.LOGIN_SUCCESS_MESSAGE);
+    }
+
+    static void printUserInformation(User user) {
+        System.out.println(user.getInformation());
     }
 
     static void printLogOutMessage() {
@@ -58,8 +75,8 @@ class ConsolePrinter {
         System.out.println(Utils.LOGIN_RETURN_MESSAGE);
     }
 
-    static void printBookList(List<Media> allMedia) {
-        for (Media book : allMedia) {
+    static void printBookList(Library library) {
+        for (Media book : library._allMedia) {
             if (book.isBook() && book.isAvailable()) {
                 printBook((Book) book);
             }
@@ -71,8 +88,8 @@ class ConsolePrinter {
                 .getAuthor()) + "|" + book.getYear());
     }
 
-    static void printMovieList(List<Media> allMedia) {
-        for (Media movie : allMedia) {
+    static void printMovieList(Library library) {
+        for (Media movie : library._allMedia) {
             if (movie.isMovie() && movie.isAvailable()) {
                 printMovie((Movie) movie);
             }
